@@ -380,28 +380,27 @@ $('markToday').onclick=()=>{localStorage.setItem('noorWirdDone',new Date().toDat
 $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollIntoView({behavior:'smooth',block:'center'})};
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
 loadSurah();
-/* قارئ كتب أهل السنة داخل الموقع */
+/* فتح مصادر قراءة الأحاديث خارج الموقع */
 (function(){
- const $id=id=>document.getElementById(id), reader=$id('bookReader'),titleEl=$id('bookReaderTitle'),statusEl=$id('bookReaderStatus'),contentEl=$id('bookReaderContent');
- if(!reader||!contentEl)return;
  const catalog={
- bukhari:{title:'صحيح البخاري',api:'bukhari',collectionSahih:true},muslim:{title:'صحيح مسلم',api:'muslim',collectionSahih:true},riyadussalihin:{title:'رياض الصالحين',api:'riyadussalihin'},nawawi40:{title:'الأربعون النووية',api:'nawawi40'},
- tafsir:{title:'تفسير ابن كثير'},adhkar:{title:'الأذكار للنووي'},bulugh:{title:'بلوغ المرام'},adab:{title:'الأدب المفرد'},aqida:{title:'العقيدة الواسطية'},fiqh:{title:'زاد المستقنع'}
+  bukhari:{title:'صحيح البخاري',url:'https://sunnah.com/bukhari'},
+  muslim:{title:'صحيح مسلم',url:'https://sunnah.com/muslim'},
+  riyadussalihin:{title:'رياض الصالحين',url:'https://sunnah.com/riyadussalihin'},
+  nawawi40:{title:'الأربعون النووية',url:'https://sunnah.com/nawawi40'},
+  tafsir:{title:'تفسير ابن كثير',url:'https://quran.ksu.edu.sa/tafseer/katheer'},
+  adhkar:{title:'الأذكار للنووي',url:'https://sunnah.com/search?q=adhkar'},
+  bulugh:{title:'بلوغ المرام',url:'https://sunnah.com/search?q=bulugh+al-maram'},
+  adab:{title:'الأدب المفرد',url:'https://sunnah.com/adab'},
+  aqida:{title:'العقيدة الواسطية',url:'https://www.google.com/search?q='+encodeURIComponent('العقيدة الواسطية قراءة الكتاب')},
+  fiqh:{title:'زاد المستقنع',url:'https://www.google.com/search?q='+encodeURIComponent('زاد المستقنع قراءة الكتاب')}
  };
- let entries=[],pos=0;
- const esc=s=>String(s??'').replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
- function render(){const h=entries[pos]||{};const text=h.arab||h.text||h.hadith||h.body||'';const no=h.number||h.hadithnumber||h.id||pos+1;
- contentEl.innerHTML='<article class="list-item"><strong>الحديث رقم '+esc(no)+'</strong><p style="white-space:pre-wrap;line-height:2;font-size:1.08rem">'+esc(text)+'</p><small>المصدر: '+esc(catalog[window.noorCurrentBook]?.title||'كتاب الحديث')+' — تُعرض أحاديث الكتاب كما يوفرها مصدر البيانات.</small></article>';
- statusEl.textContent='الحديث '+(pos+1)+' من '+entries.length;$id('bookPrev').disabled=pos<=0;$id('bookNext').disabled=pos>=entries.length-1;}
- document.addEventListener('click',async e=>{const b=e.target.closest('.open-book');if(!b)return;const book=catalog[b.dataset.bookId];if(!book)return;
- reader.style.display='block';titleEl.textContent=book.title;window.noorCurrentBook=b.dataset.bookId;reader.scrollIntoView({behavior:'smooth',block:'start'});
- if(!book.api){statusEl.textContent='القراءة الداخلية قيد الإكمال';contentEl.innerHTML='<p class="subtext">هذا الكتاب لم يُضف نصه الكامل إلى الموقع بعد. لن نفتح موقعاً خارجياً؛ سنعرضه هنا بعد تجهيز نص موثوق ومسموح بإعادة نشره.</p>';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;return;}
- contentEl.innerHTML='<p class="loading">جارٍ تحميل الأحاديث للعرض داخل الموقع…</p>';statusEl.textContent='يرجى الانتظار';
- try{let lastError=null;entries=[];for(const endpoint of ['https://api.hadith.gading.dev/books/'+encodeURIComponent(book.api)+'?range=1-50','https://api-hadis.vercel.app/books/'+encodeURIComponent(book.api)+'?range=1-50']){try{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);const res=await fetch(endpoint,{signal:controller.signal,cache:'no-store'});clearTimeout(timer);if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();const list=(data.data&&Array.isArray(data.data.hadiths)&&data.data.hadiths)||(data.data&&Array.isArray(data.data)&&data.data)||(Array.isArray(data.hadiths)&&data.hadiths)||[];if(!list.length)throw Error('empty');entries=list;break;}catch(err){lastError=err;}}if(!entries.length)throw(lastError||Error('empty'));pos=0;render();statusEl.textContent=book.collectionSahih?'أول 50 حديثاً من صحيح البخاري/مسلم، تُعرض داخل الموقع. يلزم الإنترنت.':'أول 50 حديثاً من هذا الكتاب؛ لم تُفلتر حسب درجة الصحة. يلزم الإنترنت.';}catch(err){entries=[];contentEl.innerHTML='<p class="subtext">تعذّر تحميل النص حالياً. تحقق من الإنترنت وحاول مجدداً. لم نفتح أي موقع خارجي.</p>';statusEl.textContent='تعذّر التحميل';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;}
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('.open-book');if(!b)return;
+  const book=catalog[b.dataset.bookId];if(!book)return;
+  window.location.href=book.url;
  });
- $id('closeBookReader').addEventListener('click',()=>reader.style.display='none');
- $id('bookPrev').addEventListener('click',()=>{if(pos>0){pos--;render();}});
- $id('bookNext').addEventListener('click',()=>{if(pos<entries.length-1){pos++;render();}});
+ const reader=document.getElementById('bookReader');
+ if(reader)reader.style.display='none';
 })();
 
 setupSeparatePages();
