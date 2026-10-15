@@ -23,6 +23,14 @@ footer{text-align:center;padding:28px 16px 38px;border-top:1px solid var(--line)
 .bottom-nav{display:none}
 @media(min-width:720px){.hero-box{padding:44px 42px;min-height:340px}.quick-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.prayer-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.head{padding-top:13px;padding-bottom:13px}.hero{margin-top:28px}.section{margin-top:42px}}
 @media(max-width:520px){.head{padding:9px 12px}.brandname{font-size:18px}.brandmark{width:40px;height:40px}.head-actions .soft-btn{padding:7px 8px}.hero-box{padding:25px 18px;min-height:320px}.hero-box:after{left:-5%;top:0}.hero p{font-size:13px}.section-head h2{font-size:20px}.grid{gap:9px}.tile{padding:12px}.tile h3{font-size:14px}.tile p{font-size:11px}.panel{padding:13px}.ayah-text{font-size:21px}.bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:30;justify-content:space-around;gap:2px;padding:7px 4px calc(7px + env(safe-area-inset-bottom));background:#fffefaed;border-top:1px solid var(--line);backdrop-filter:blur(12px)}.bottom-nav a{text-decoration:none;text-align:center;font-size:10px;color:#80632d;min-width:0}.bottom-nav span{display:block;font-size:19px;line-height:1.4}footer{padding-bottom:90px}}
+
+/* تنقّل الصفحات: يظهر قسم واحد في كل مرة */
+body.page-mode .page-hidden{display:none!important}
+body.page-mode .page-current{display:block}
+body.page-mode main>.quick-stats.page-current{display:grid}
+body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb75;color:#8e6925}
+#morePages{display:none}
+@media(max-width:520px){#morePages{display:block}}
 </style>
 </head>
 <body>
@@ -32,7 +40,7 @@ footer{text-align:center;padding:28px 16px 38px;border-top:1px solid var(--line)
   <div class="brand"><div class="brandmark">۞</div><div class="brandname">نور الإسلام<small>رفيق يومك إلى الطمأنينة</small></div></div>
   <div class="head-actions"><button class="soft-btn" id="askAssistantTop" title="اسأل المساعد الإسلامي">🤖 اسأل</button><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
  </div>
- <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">كتب أهل السنة</a></nav>
+ <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#assistantPage">🤖 المساعد</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
 </header>
 <section class="hero" id="home"><div class="hero-box"><div class="hero-content">
  <span class="eyebrow">✦ مساحة للروح والقلب</span>
@@ -133,9 +141,60 @@ footer{text-align:center;padding:28px 16px 38px;border-top:1px solid var(--line)
  <section class="section"><div class="panel"><div class="verse">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div><div class="subtext">سورة الرعد — الآية ٢٨</div></div></section>
 </main>
 <footer><strong>۞ نور الإسلام</strong><p>نورٌ للروح، وطمأنينةٌ للقلب.</p><p>اللهم اجعل هذا العمل نافعاً، وعلّمنا ما ينفعنا.</p><p>محتوى القرآن والتوقيت يحتاج إلى اتصال بالإنترنت؛ راجع المصادر المعتمدة في مسائل الدين.</p></footer>
-<div class="bottom-nav"><a href="#home"><span>⌂</span>الرئيسية</a><a href="#quran"><span>📖</span>القرآن</a><a href="#listen"><span>🎧</span>استماع</a><a href="#adhkar"><span>🤲</span>الأذكار</a><a href="#tasbih"><span>📿</span>التسبيح</a></div>
+<div class="bottom-nav"><a href="#home"><span>⌂</span>الرئيسية</a><a href="#quran"><span>📖</span>القرآن</a><a href="#listen"><span>🎧</span>استماع</a><a href="#adhkar"><span>🤲</span>الأذكار</a><a href="#morePages"><span>☰</span>الأقسام</a></div>
 <script>
 const $=id=>document.getElementById(id);
+
+function setupSeparatePages(){
+ document.body.classList.add('page-mode');
+ const main=document.querySelector('main'),hero=document.getElementById('home'),stats=main.querySelector('.quick-stats');
+ const assistantBox=document.getElementById('assistantBox'),favoritesBox=document.getElementById('favoritesBox');
+ function makePage(id,title,icon,box){
+  let page=document.getElementById(id);
+  if(!page){page=document.createElement('section');page.id=id;page.className='section';main.appendChild(page);}
+  if(box)page.appendChild(box);
+  return page;
+ }
+ makePage('assistantPage','اسأل المساعد الإسلامي','🤖',assistantBox);
+ makePage('favoritesPage','الآيات المحفوظة','☆',favoritesBox);
+ const pages=[hero,stats,...Array.from(main.querySelectorAll(':scope > .section'))];
+ pages.forEach(el=>{if(el)el.classList.add('page-hidden')});
+ function showPage(id,updateHash=true){
+  const target=id==='morePages'?'knowledge':id;
+  pages.forEach(el=>{if(el){el.classList.remove('page-current');el.classList.add('page-hidden')}});
+  const selected=target==='home'?hero:document.getElementById(target);
+  if(selected){selected.classList.remove('page-hidden');selected.classList.add('page-current')}
+  if(stats&&target==='home'){stats.classList.remove('page-hidden');stats.classList.add('page-current')}
+  document.querySelectorAll('nav a').forEach(a=>{if(a.getAttribute('href')==='#'+target)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(updateHash&&location.hash!=='#'+target)history.replaceState(null,'','#'+target);
+  window.scrollTo({top:0,behavior:'smooth'});
+ }
+ document.addEventListener('click',function(e){
+  const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const id=a.getAttribute('href').slice(1);
+  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','assistantPage','favoritesPage'].includes(id)){
+   e.preventDefault();showPage(id);
+  }
+ });
+ const openAssistant=document.getElementById('openAssistant');
+ if(openAssistant)openAssistant.onclick=()=>{showPage('assistantPage');assistantBox.style.display='block'};
+ const topAssistant=document.getElementById('askAssistantTop');
+ if(topAssistant)topAssistant.onclick=()=>{showPage('assistantPage');assistantBox.style.display='block';setTimeout(()=>document.getElementById('assistantQuestion').focus(),250)};
+ const closeAssistant=document.getElementById('closeAssistant');
+ if(closeAssistant)closeAssistant.onclick=()=>showPage('knowledge');
+ const favoriteTop=document.getElementById('favoriteTop'),showFavorites=document.getElementById('showFavorites');
+ const openFavorites=()=>{showPage('favoritesPage');favoritesBox.style.display='block'};
+ if(favoriteTop)favoriteTop.onclick=openFavorites;if(showFavorites)showFavorites.onclick=openFavorites;
+ const closeFavorites=document.getElementById('closeFavorites');
+ if(closeFavorites)closeFavorites.onclick=()=>showPage('home');
+ const openLibrary=document.getElementById('openLibrary');
+ if(openLibrary)openLibrary.onclick=()=>{showPage('knowledge');document.getElementById('libraryBox').style.display='block'};
+ const closeLibrary=document.getElementById('closeLibrary');
+ if(closeLibrary)closeLibrary.onclick=()=>document.getElementById('libraryBox').style.display='none';
+ const initial=location.hash.slice(1);
+ showPage(['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','assistantPage','favoritesPage'].includes(initial)?initial:'home',false);
+}
+
 const surahNames=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
 let currentSurah=1,currentAyahs=[],favorites=JSON.parse(localStorage.getItem('noorFavs')||'[]'),allSurahs=[];
 const arabicNum=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[+d]);
@@ -185,6 +244,7 @@ $('markToday').onclick=()=>{localStorage.setItem('noorWirdDone',new Date().toDat
 $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollIntoView({behavior:'smooth',block:'center'})};
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
 loadSurah();
+setupSeparatePages();
 </script>
 </body>
 </html>
