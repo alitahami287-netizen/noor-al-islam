@@ -385,19 +385,19 @@ loadSurah();
  const $id=id=>document.getElementById(id), reader=$id('bookReader'),titleEl=$id('bookReaderTitle'),statusEl=$id('bookReaderStatus'),contentEl=$id('bookReaderContent');
  if(!reader||!contentEl)return;
  const catalog={
- bukhari:{title:'صحيح البخاري',api:'bukhari'},muslim:{title:'صحيح مسلم',api:'muslim'},riyadussalihin:{title:'رياض الصالحين',api:'riyadussalihin'},nawawi40:{title:'الأربعون النووية',api:'nawawi40'},
+ bukhari:{title:'صحيح البخاري',api:'bukhari',sahihOnly:true},muslim:{title:'صحيح مسلم',api:'muslim',sahihOnly:true},riyadussalihin:{title:'رياض الصالحين',api:'riyadussalihin',sahihOnly:true},nawawi40:{title:'الأربعون النووية',api:'nawawi40',sahihOnly:true},
  tafsir:{title:'تفسير ابن كثير'},adhkar:{title:'الأذكار للنووي'},bulugh:{title:'بلوغ المرام'},adab:{title:'الأدب المفرد'},aqida:{title:'العقيدة الواسطية'},fiqh:{title:'زاد المستقنع'}
  };
  let entries=[],pos=0;
  const esc=s=>String(s??'').replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
  function render(){const h=entries[pos]||{};const text=h.arab||h.text||h.hadith||h.body||'';const no=h.number||h.hadithnumber||h.id||pos+1;
- contentEl.innerHTML='<article class="list-item"><strong>الحديث رقم '+esc(no)+'</strong><p style="white-space:pre-wrap;line-height:2;font-size:1.08rem">'+esc(text)+'</p></article>';
+ contentEl.innerHTML='<article class="list-item"><strong>الحديث رقم '+esc(no)+'</strong><p style="white-space:pre-wrap;line-height:2;font-size:1.08rem">'+esc(text)+'</p><small>المصدر: '+esc(catalog[window.noorCurrentBook]?.title||'كتاب الحديث')+' — تُعرض أحاديث الكتاب كما يوفرها مصدر البيانات.</small></article>';
  statusEl.textContent='الحديث '+(pos+1)+' من '+entries.length;$id('bookPrev').disabled=pos<=0;$id('bookNext').disabled=pos>=entries.length-1;}
  document.addEventListener('click',async e=>{const b=e.target.closest('.open-book');if(!b)return;const book=catalog[b.dataset.bookId];if(!book)return;
- reader.style.display='block';titleEl.textContent=book.title;reader.scrollIntoView({behavior:'smooth',block:'start'});
+ reader.style.display='block';titleEl.textContent=book.title;window.noorCurrentBook=b.dataset.bookId;reader.scrollIntoView({behavior:'smooth',block:'start'});
  if(!book.api){statusEl.textContent='القراءة الداخلية قيد الإكمال';contentEl.innerHTML='<p class="subtext">هذا الكتاب لم يُضف نصه الكامل إلى الموقع بعد. لن نفتح موقعاً خارجياً؛ سنعرضه هنا بعد تجهيز نص موثوق ومسموح بإعادة نشره.</p>';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;return;}
  contentEl.innerHTML='<p class="loading">جارٍ تحميل الأحاديث للعرض داخل الموقع…</p>';statusEl.textContent='يرجى الانتظار';
- try{const res=await fetch('https://api.hadith.gading.dev/books/'+encodeURIComponent(book.api)+'?range=1-20');if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();entries=(data.data&&data.data.hadiths)||[];pos=0;if(!entries.length)throw Error('empty');render();statusEl.textContent='الأحاديث معروضة داخل نور الإسلام؛ يلزم اتصال بالإنترنت.';}
+ try{const res=await fetch('https://api.hadith.gading.dev/books/'+encodeURIComponent(book.api)+'?range=1-300');if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();entries=(data.data&&data.data.hadiths)||[];if(book.sahihOnly){entries=entries.filter(h=>{const grade=String(h.grade||h.grading||h.status||'').toLowerCase();return /sahih|صحيح/.test(grade);});}pos=0;if(!entries.length)throw Error('empty');render();statusEl.textContent=book.sahihOnly?'الأحاديث المصنفة صحيحة فقط حسب بيانات المصدر. يلزم الإنترنت.':'الأحاديث معروضة داخل نور الإسلام؛ يلزم اتصال بالإنترنت.';}
  catch(err){entries=[];contentEl.innerHTML='<p class="subtext">تعذّر تحميل النص حالياً. تحقق من الإنترنت وحاول مجدداً. لم نفتح أي موقع خارجي.</p>';statusEl.textContent='تعذّر التحميل';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;}
  });
  $id('closeBookReader').addEventListener('click',()=>reader.style.display='none');
