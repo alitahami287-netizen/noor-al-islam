@@ -32,6 +32,13 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
 #morePages{display:none}
 @media(max-width:520px){#morePages{display:block}}
 
+
+.page-menu-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.page-menu-card{display:grid;grid-template-columns:48px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:15px;border:1px solid var(--line,#e5d8ba);border-radius:16px;background:var(--card,#fff);text-decoration:none;color:var(--ink,#29251f);box-shadow:0 4px 15px #8060200a}
+.page-menu-card>span{grid-row:1/3;display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#fff2d1;font-size:24px}
+.page-menu-card strong{font-size:15px;color:#8e6925}
+.page-menu-card small{font-size:12px;color:var(--muted,#777);margin-top:3px}
+@media(min-width:600px){.page-menu-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -86,6 +93,22 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
    <div class="row" style="margin-top:12px"><button class="btn gold" id="fullQuranStart">▶ ابدأ من سورة الفاتحة</button><button class="btn" id="fullQuranStop">إيقاف</button></div>
    <div class="audio-bar"><div id="fullQuranStatus" class="subtext" style="margin-bottom:7px">اختَر قارئاً من صفحة التلاوة، ثم ارجع هنا لبدء الاستماع المتتابع.</div><div id="fullQuranCurrent" class="dhikr-arabic" style="font-size:20px">جاهز للاستماع</div><audio id="fullQuranAudio" controls preload="metadata" style="width:100%"></audio></div>
    <p class="subtext">يحتاج إلى اتصال بالإنترنت. سيحاول الانتقال تلقائياً إلى السورة التالية المتاحة لدى القارئ المختار.</p>
+  </div>
+ </section>
+ <section class="section" id="morePages">
+  <div class="section-head"><div><h2>☰ أقسام نور الإسلام</h2><p>اختَر القسم الذي تريد فتحه. كل قسم يظهر بصفحة مستقلة.</p></div><span class="section-tag">قائمة الأقسام</span></div>
+  <div class="page-menu-grid">
+   <a class="page-menu-card" href="#quran"><span>📖</span><strong>القرآن الكريم</strong><small>قراءة الآيات والسور</small></a>
+   <a class="page-menu-card" href="#listen"><span>🎙️</span><strong>تلاوة سورة</strong><small>اختيار القارئ والسورة</small></a>
+   <a class="page-menu-card" href="#fullQuranListen"><span>🎧</span><strong>الاستماع إلى القرآن كاملاً</strong><small>استماع متتابع للسور</small></a>
+   <a class="page-menu-card" href="#adhkar"><span>🤲</span><strong>الأذكار</strong><small>الصباح والمساء وبقية الأذكار</small></a>
+   <a class="page-menu-card" href="#tasbih"><span>📿</span><strong>المسبحة الإلكترونية</strong><small>عداد التسبيح</small></a>
+   <a class="page-menu-card" href="#prayer"><span>🕌</span><strong>الصلاة والقبلة</strong><small>المواقيت والقبلة</small></a>
+   <a class="page-menu-card" href="#wuduPage"><span>💧</span><strong>الوضوء</strong><small>خطوات الوضوء</small></a>
+   <a class="page-menu-card" href="#halalPage"><span>🍃</span><strong>الحلال والحرام</strong><small>معلومات للتعلّم</small></a>
+   <a class="page-menu-card" href="#knowledge"><span>📚</span><strong>التعلّم</strong><small>معلومات إسلامية</small></a>
+   <a class="page-menu-card" href="#sunnaBooks"><span>📜</span><strong>المكتبة الإسلامية</strong><small>كتب ومصادر</small></a>
+   <a class="page-menu-card" href="#favoritesPage"><span>☆</span><strong>المحفوظات</strong><small>الآيات المحفوظة</small></a>
   </div>
  </section>
  <section class="section" id="adhkar">
@@ -198,7 +221,7 @@ function setupSeparatePages(){
  const pages=[hero,stats,...Array.from(main.querySelectorAll(':scope > .section'))];
  pages.forEach(el=>{if(el)el.classList.add('page-hidden')});
  function showPage(id,updateHash=true){
-  const target=id==='morePages'?'knowledge':id;
+  const target=id;
   pages.forEach(el=>{if(el){el.classList.remove('page-current');el.classList.add('page-hidden')}});
   const selected=target==='home'?hero:document.getElementById(target);
   if(selected){selected.classList.remove('page-hidden');selected.classList.add('page-current')}
@@ -210,7 +233,7 @@ function setupSeparatePages(){
  document.addEventListener('click',function(e){
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=a.getAttribute('href').slice(1);
-  if(id==='morePages'||['home','quran','listen','fullQuranListen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(id)){
+  if(id==='morePages'||['home','quran','listen','fullQuranListen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage','morePages'].includes(id)){
    e.preventDefault();showPage(id);
   }
  });
@@ -224,7 +247,7 @@ function setupSeparatePages(){
  const closeLibrary=document.getElementById('closeLibrary');
  if(closeLibrary)closeLibrary.onclick=()=>document.getElementById('libraryBox').style.display='none';
  const initial=location.hash.slice(1);
- showPage(['home','quran','listen','fullQuranListen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(initial)?initial:'home',false);
+ showPage(['home','quran','listen','fullQuranListen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage','morePages'].includes(initial)?initial:'home',false);
 }
 
 const surahNames=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
