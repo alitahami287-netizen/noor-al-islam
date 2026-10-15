@@ -32,7 +32,7 @@ footer{text-align:center;padding:28px 16px 38px;border-top:1px solid var(--line)
   <div class="brand"><div class="brandmark">۞</div><div class="brandname">نور الإسلام<small>رفيق يومك إلى الطمأنينة</small></div></div>
   <div class="head-actions"><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
  </div>
- <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a></nav>
+ <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">كتب أهل السنة</a></nav>
 </header>
 <section class="hero" id="home"><div class="hero-box"><div class="hero-content">
  <span class="eyebrow">✦ مساحة للروح والقلب</span>
@@ -117,6 +117,18 @@ footer{text-align:center;padding:28px 16px 38px;border-top:1px solid var(--line)
   <div id="assistantBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>🤍 المساعد التعليمي</h2><p>اختر سؤالاً لعرض إجابة تمهيدية.</p></div><button class="btn" id="closeAssistant">إغلاق</button></div><div class="pills"><button class="pill" data-question="wudu">كيف أتعلم الوضوء؟</button><button class="pill" data-question="prayer">ما أهمية الصلاة؟</button><button class="pill" data-question="fasting">ما معنى الصيام؟</button><button class="pill" data-question="quran">كيف أبدأ حفظ القرآن؟</button></div><div id="assistantAnswer" class="message">هذا مساعد تعليمي بسيط وليس محادثة ذكاء اصطناعي مباشرة، ولا يصدر فتاوى. في المسائل الخاصة اسأل عالماً موثوقاً.</div></div>
   <div id="libraryBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>📚 مكتبة صغيرة</h2><p>بطاقات معرفية مختصرة داخل نور الإسلام.</p></div><button class="btn" id="closeLibrary">إغلاق</button></div><div class="list-item"><strong>الوضوء</strong><p>تعلّم صفة الوضوء من مصدر موثوق، واهتم بترتيب الأعضاء وإتمام الطهارة.</p></div><div class="list-item"><strong>الصلاة</strong><p>الصلاة عبادة عظيمة، تعلّم شروطها وأركانها من معلّم أو مصدر إسلامي موثوق.</p></div><div class="list-item"><strong>تدبّر القرآن</strong><p>ابدأ بآيات قليلة، واقرأ تفسيراً موثوقاً لمعانيها، ثم اعمل بما تعلمت.</p></div></div>
   <div id="favoritesBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>☆ آياتي المحفوظة</h2><p>تُحفظ محلياً في متصفح هذا الجهاز.</p></div><button class="btn" id="closeFavorites">إغلاق</button></div><div id="favoritesList" class="loading">لا توجد آيات محفوظة بعد.</div></div>
+ </section>
+ <section class="section" id="sunnaBooks">
+  <div class="section-head"><div><h2>📚 مكتبة كتب أهل السنة</h2><p>روابط خارجية لقراءة الكتب والبحث عنها، مع بقاء تصميم نور الإسلام كما هو.</p></div><span class="section-tag">المكتبة الإسلامية</span></div>
+  <div class="grid">
+   <article class="tile"><div class="tile-icon">📖</div><h3>صحيح البخاري</h3><p>للبحث عن أحاديث صحيح البخاري وقراءتها من مكتبة الشاملة.</p><a class="btn" href="https://shamela.ws/" target="_blank" rel="noopener noreferrer">افتح مكتبة الشاملة</a></article>
+   <article class="tile"><div class="tile-icon">📘</div><h3>صحيح مسلم</h3><p>ابحث عن صحيح مسلم وشروحه ضمن المكتبات الإسلامية.</p><a class="btn" href="https://shamela.ws/" target="_blank" rel="noopener noreferrer">ابحث في الشاملة</a></article>
+   <article class="tile"><div class="tile-icon">🌿</div><h3>رياض الصالحين</h3><p>من كتب الحديث المشهورة للإمام النووي.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">افتح المكتبة الوقفية</a></article>
+   <article class="tile"><div class="tile-icon">📚</div><h3>تفسير ابن كثير</h3><p>للبحث عن التفسير وقراءة النسخ المتاحة.</p><a class="btn" href="https://shamela.ws/" target="_blank" rel="noopener noreferrer">ابحث عن التفسير</a></article>
+   <article class="tile"><div class="tile-icon">🤲</div><h3>الأذكار للإمام النووي</h3><p>للبحث عن كتاب الأذكار ومراجعة نصوصه.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث في الوقفية</a></article>
+   <article class="tile"><div class="tile-icon">🔎</div><h3>بلوغ المرام</h3><p>ابحث عن أحاديث الأحكام وشروح الكتاب.</p><a class="btn" href="https://shamela.ws/" target="_blank" rel="noopener noreferrer">ابحث في الشاملة</a></article>
+  </div>
+  <p class="subtext" style="margin-top:10px">هذه روابط لمكتبات خارجية؛ الكتب ليست محفوظة داخل الموقع نفسه، وقد تحتاج إلى اتصال بالإنترنت.</p>
  </section>
  <section class="section"><div class="panel"><div class="verse">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div><div class="subtext">سورة الرعد — الآية ٢٨</div></div></section>
 </main>
