@@ -41,7 +41,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
   <div class="brand"><div class="brandmark">۞</div><div class="brandname">نور الإسلام<small>رفيق يومك إلى الطمأنينة</small></div></div>
   <div class="head-actions"><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
  </div>
- <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#wuduPage">💧 الوضوء</a><a href="#halalPage">🍃 الحلال والحرام</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
+ <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#wuduPage">💧 الوضوء</a><a href="#halalPage">🍃 الحلال والحرام</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
 </header>
 <section class="hero" id="home"><div class="hero-box"><div class="hero-content">
  <span class="eyebrow">✦ مساحة للروح والقلب</span>
@@ -129,15 +129,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
    <a class="btn" href="#knowledge">العودة إلى مركز المعرفة</a>
   </div>
  </section>
- <section class="section" id="hadith">
-  <div class="section-head"><div><h2>🌿 من هدي النبي ﷺ</h2><p>أحاديث قصيرة مع ذكر المصدر.</p></div><span class="section-tag">الحديث الشريف</span></div>
-  <div class="panel">
-   <div class="list-item"><strong>«إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ»</strong><p>إنما يكون اعتبار العمل بنيّة صاحبه.</p><small>صحيح البخاري، حديث ١</small></div>
-   <div class="list-item"><strong>«الدِّينُ النَّصِيحَةُ»</strong><p>النصيحة من أصول الدين ومعاني الإخلاص والصدق.</p><small>صحيح مسلم، حديث ٥٥</small></div>
-   <div class="list-item"><strong>«مَنْ لَا يَرْحَمْ لَا يُرْحَمْ»</strong><p>الحثّ على الرحمة بالخلق.</p><small>صحيح البخاري، حديث ٥٩٩٧</small></div>
-   <div class="list-item"><strong>«الكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ»</strong><p>الكلمة الحسنة باب من أبواب الخير.</p><small>صحيح البخاري، حديث ٢٩٨٩</small></div>
-  </div>
- </section>
+ 
  <section class="section" id="knowledge">
   <div class="section-head"><div><h2>✨ مركز المعرفة الإسلامية</h2><p>أدوات تساعدك على التعلّم داخل الصفحة.</p></div><span class="section-tag">تعلّم واكتشف</span></div>
   <div class="grid">
@@ -209,7 +201,7 @@ function setupSeparatePages(){
  document.addEventListener('click',function(e){
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=a.getAttribute('href').slice(1);
-  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(id)){
+  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(id)){
    e.preventDefault();showPage(id);
   }
  });
@@ -223,7 +215,7 @@ function setupSeparatePages(){
  const closeLibrary=document.getElementById('closeLibrary');
  if(closeLibrary)closeLibrary.onclick=()=>document.getElementById('libraryBox').style.display='none';
  const initial=location.hash.slice(1);
- showPage(['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(initial)?initial:'home',false);
+ showPage(['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(initial)?initial:'home',false);
 }
 
 const surahNames=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
