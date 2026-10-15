@@ -123,6 +123,31 @@ html[dir="ltr"] .notice{border-right:0;border-left:3px solid var(--gold)}
 #noor-assistant .assistant-footnote{margin:10px 2px 0;color:#928b79;font-size:11px;text-align:center}
 @media(max-width:560px){#noor-assistant .assistant-topbar{padding:13px;gap:10px}#noor-assistant .assistant-avatar{width:42px;height:42px;flex-basis:42px}#noor-assistant .assistant-brand h3{font-size:16px}#noor-assistant .assistant-state{font-size:10px;padding:4px 7px}#noor-assistant .assistant-workspace{padding:13px}#noor-assistant .assistant-welcome{padding-top:14px}#noor-assistant .assistant-welcome h3{font-size:19px}#noor-assistant .assistant-prompts{grid-template-columns:1fr}#noor-assistant .assistant-prompts button{min-height:48px}#noor-assistant .assistant-message{max-width:96%}#noor-assistant .assistant-form button{min-width:64px;padding-inline:11px}}
 @media(prefers-reduced-motion:reduce){#noor-assistant .assistant-chat{scroll-behavior:auto}#noor-assistant .assistant-prompts button{transition:none}}
+
+/* Noor Al-Islam app-like responsive redesign — additive layer */
+:root{--bg:#080808;--panel:#111;--gold:#d6b45a;--muted:#c9c3b2;--line:rgba(214,180,90,.24)}
+html{scroll-padding-top:82px}
+body{background:#080808!important;color:#f7f1df;line-height:1.8;padding-bottom:86px}
+body::before{opacity:.42}
+header,nav,.hero,.card,.feature,.section,.panel,article,.box,.item,.tile,.prayer-card,.dhikr-card{border-color:var(--line)!important}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:rgba(8,8,8,.92)!important;border-bottom:1px solid var(--line)}
+button,a,.btn{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+button:active,.btn:active{transform:scale(.98)}
+button,.btn{border-radius:14px}
+input,textarea,select{background:#101010!important;color:#fff!important;border:1px solid var(--line)!important;border-radius:13px!important}
+section{scroll-margin-top:88px}
+h1,h2,h3{letter-spacing:.01em}
+h1,h2{color:#e2c46e}
+.card,.feature,.panel,article,.box,.tile{background:linear-gradient(145deg,rgba(25,23,17,.96),rgba(12,12,12,.98))!important;border:1px solid var(--line)!important;border-radius:20px!important;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+a{color:#e2c46e}
+.na-app-nav{position:fixed;z-index:9999;bottom:0;left:0;right:0;display:flex;justify-content:space-around;gap:4px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:rgba(9,9,9,.96);border-top:1px solid rgba(214,180,90,.35);backdrop-filter:blur(18px);box-shadow:0 -8px 30px rgba(0,0,0,.38)}
+.na-app-nav a{flex:1;min-width:0;text-decoration:none;color:#b8b09a;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px}
+.na-app-nav a span{font-size:19px;line-height:1.2}
+.na-app-nav a.active{color:#f0d27b;background:rgba(214,180,90,.11)}
+.na-app-nav a:focus-visible{outline:2px solid #d6b45a;outline-offset:2px}
+@media(min-width:760px){body{max-width:1100px;margin:0 auto;padding-left:18px;padding-right:18px;padding-bottom:25px}.na-app-nav{left:50%;right:auto;transform:translateX(-50%);width:min(680px,92vw);bottom:14px;border:1px solid rgba(214,180,90,.35);border-radius:20px}.na-app-nav a{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -749,5 +774,32 @@ if (!sessionStorage.getItem('noor-greeting-seen')) {
 })();
 
 </script>
+
+<nav class="na-app-nav" aria-label="التنقل الرئيسي">
+<a href="#home" data-na-target="home"><span>⌂</span>الرئيسية</a>
+<a href="#quran" data-na-target="quran"><span>۞</span>القرآن</a>
+<a href="#adhkar" data-na-target="adhkar"><span>☾</span>الأذكار</a>
+<a href="#tasbih" data-na-target="tasbih"><span>📿</span>التسبيح</a>
+<a href="#ai-assistant" data-na-target="ai-assistant"><span>✦</span>المساعد</a>
+</nav>
+<script>
+(function(){
+ const nav=document.querySelector('.na-app-nav'); if(!nav)return;
+ const all=[...document.querySelectorAll('section[id],main[id],div[id],article[id]')];
+ const findTarget=(key)=>{
+   const direct=document.getElementById(key); if(direct)return direct;
+   const terms={home:['الرئيسية','الرئيسيه','السلام عليكم'],quran:['القرآن الكريم','القران الكريم','القرآن'],adhkar:['الأذكار','اذكار الصباح'],tasbih:['التسبيح','السبحة','المسبحة'], 'ai-assistant':['اسأل الذكاء الاصطناعي','المساعد الإسلامي','الذكاء الاصطناعي']};
+   const term=(terms[key]||[]).map(x=>x.toLowerCase());
+   return all.find(el=>term.some(t=>(el.innerText||'').toLowerCase().includes(t)))||null;
+ };
+ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{
+   const key=a.dataset.naTarget, target=findTarget(key);
+   if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});if(target.id)history.replaceState(null,'','#'+target.id);}
+   nav.querySelectorAll('a').forEach(x=>x.classList.toggle('active',x===a));
+ }));
+ const first=nav.querySelector('a'); if(first)first.classList.add('active');
+})();
+</script>
+
 </body>
 </html>
