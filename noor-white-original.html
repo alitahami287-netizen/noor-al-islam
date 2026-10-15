@@ -41,7 +41,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
   <div class="brand"><div class="brandmark">۞</div><div class="brandname">نور الإسلام<small>رفيق يومك إلى الطمأنينة</small></div></div>
   <div class="head-actions"><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
  </div>
- <button id="languageToggle" class="btn gold" type="button" style="margin:8px">English</button><nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#wuduPage">💧 الوضوء</a><a href="#halalPage">🍃 الحلال والحرام</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
+ <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#wuduPage">💧 الوضوء</a><a href="#halalPage">🍃 الحلال والحرام</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
 </header>
 <section class="hero" id="home"><div class="hero-box"><div class="hero-content">
  <span class="eyebrow">✦ مساحة للروح والقلب</span>
@@ -380,45 +380,7 @@ $('markToday').onclick=()=>{localStorage.setItem('noorWirdDone',new Date().toDat
 $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollIntoView({behavior:'smooth',block:'center'})};
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
 loadSurah();
-/* تبديل العربية والإنجليزية لواجهة الموقع */
-(function(){
- const btn=document.getElementById('languageToggle');if(!btn)return;
- const pairs=[
- ['الرئيسية','Home'],['القرآن','Quran'],['التلاوات','Recitations'],['الأذكار','Adhkar'],['المسبحة','Tasbih'],['الصلاة والقبلة','Prayer & Qibla'],['الأحاديث','Hadith'],['تعلّم','Learn'],['المكتبة','Library'],['💧 الوضوء','💧 Wudu'],['🍃 الحلال والحرام','🍃 Halal & Haram'],['☆ المحفوظات','☆ Favorites'],
- ['📚 مكتبة كتب أهل السنة','📚 Sunni Books Library'],['اختر كتابًا لفتحه وقراءته في موقع خارجي.','Choose a book to read on an external website.'],['المكتبة الإسلامية','Islamic Library'],
- ['صحيح البخاري','Sahih al-Bukhari'],['صحيح مسلم','Sahih Muslim'],['رياض الصالحين','Riyad as-Salihin'],['الأربعون النووية','Forty Hadith of al-Nawawi'],['تفسير ابن كثير','Tafsir Ibn Kathir'],['الأذكار للنووي','Al-Adhkar by al-Nawawi'],['بلوغ المرام','Bulugh al-Maram'],['الأدب المفرد','Al-Adab al-Mufrad'],['العقيدة الواسطية','Al-Aqidah al-Wasitiyyah'],['زاد المستقنع','Zad al-Mustaqni'],
- ['من أشهر كتب الحديث عند أهل السنة.','One of the best-known Sunni hadith collections.'],['كتاب حديث للإمام مسلم بن الحجاج.','A hadith collection by Imam Muslim ibn al-Hajjaj.'],['أحاديث في العبادات والأخلاق والآداب، جمعها الإمام النووي.','Hadith on worship, manners, and ethics, compiled by Imam al-Nawawi.'],['مجموعة أحاديث مشهورة في أصول الدين والآداب.','A well-known collection of hadith on faith and manners.'],['تفسير مشهور للقرآن الكريم؛ راجع الآيات وسياقها.','A well-known Qur’an commentary.'],['كتاب يجمع أبواباً من الذكر والدعاء والآداب.','A book of remembrance, supplications, and manners.'],['أحاديث في أبواب الأحكام الفقهية، جمعها ابن حجر العسقلاني.','Hadith on Islamic rulings, compiled by Ibn Hajar al-Asqalani.'],['آثار وأحاديث في الآداب والأخلاق.','Reports and hadith on manners and ethics.'],['متن معروف في مسائل العقيدة عند أهل السنة.','A well-known text on Sunni creed.'],['متن فقهي مشهور في الفقه الحنبلي.','A well-known Hanbali jurisprudence text.'],['اقرأ خارج الموقع / Read online','Read on external site'],
- ['الرئيسية','Home'],['موقع نور الإسلام','Noor Al-Islam']
- ];
- let english=false;
- function walk(root){const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=walker.nextNode())){if(!n.nodeValue.trim())continue;const original=n.nodeValue;let val=original;for(const [ar,en] of pairs){if(val.includes(ar))val=val.split(ar).join(english?en:ar);}n.nodeValue=val;}}
- btn.addEventListener('click',()=>{english=!english;walk(document.body);document.documentElement.lang=english?'en':'ar';document.documentElement.dir=english?'ltr':'rtl';btn.textContent=english?'العربية':'English';});
-})();
-
-/* فتح مصادر قراءة الأحاديث خارج الموقع */
-(function(){
- const catalog={
-  bukhari:{title:'صحيح البخاري',url:'https://sunnah.com/bukhari'},
-  muslim:{title:'صحيح مسلم',url:'https://sunnah.com/muslim'},
-  riyadussalihin:{title:'رياض الصالحين',url:'https://sunnah.com/riyadussalihin'},
-  nawawi40:{title:'الأربعون النووية',url:'https://sunnah.com/nawawi40'},
-  tafsir:{title:'تفسير ابن كثير',url:'https://quran.ksu.edu.sa/tafseer/katheer'},
-  adhkar:{title:'الأذكار للنووي',url:'https://sunnah.com/search?q=adhkar'},
-  bulugh:{title:'بلوغ المرام',url:'https://sunnah.com/search?q=bulugh+al-maram'},
-  adab:{title:'الأدب المفرد',url:'https://sunnah.com/adab'},
-  aqida:{title:'العقيدة الواسطية',url:'https://www.google.com/search?q='+encodeURIComponent('العقيدة الواسطية قراءة الكتاب')},
-  fiqh:{title:'زاد المستقنع',url:'https://www.google.com/search?q='+encodeURIComponent('زاد المستقنع قراءة الكتاب')}
- };
- document.addEventListener('click',e=>{
-  const b=e.target.closest('.open-book');if(!b)return;
-  const book=catalog[b.dataset.bookId];if(!book)return;
-  window.location.href=book.url;
- });
- const reader=document.getElementById('bookReader');
- if(reader)reader.style.display='none';
-})();
-
-setupSeparatePages();
+/* أزيل خيار اللغة الإنجليزية بناءً على طلب المستخدم */
 </script>
 </body>
 </html>
