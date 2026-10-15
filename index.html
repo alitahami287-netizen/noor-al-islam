@@ -89,6 +89,36 @@ html[dir="ltr"] body{text-align:left}
 html[dir="ltr"] .hero{text-align:center}
 html[dir="ltr"] .notice{border-right:0;border-left:3px solid var(--gold)}
 @media(max-width:480px){.hero{padding:26px 14px;min-height:270px}.hero-art{width:60%;opacity:.34}.lang-switch{position:static;margin-bottom:10px}.hero-copy{width:100%}}
+
+/* Premium Noor refresh */
+:root{--gold:#e2c36a;--gold-soft:#f5e6b0;--panel:#11110f;--line:rgba(226,195,106,.28)}
+body{background-color:#070807}
+section{scroll-margin-top:22px}
+section h2{letter-spacing:.2px;text-shadow:0 0 22px rgba(226,195,106,.12)}
+.card{border:1px solid rgba(226,195,106,.22);background:linear-gradient(145deg,rgba(24,23,18,.96),rgba(10,11,10,.96));border-radius:20px;box-shadow:0 16px 42px rgba(0,0,0,.22);transition:transform .22s ease,border-color .22s ease}
+.card:hover{border-color:rgba(226,195,106,.48)}
+.btn,button{transition:transform .18s ease,box-shadow .18s ease}
+.btn:hover,button:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(226,195,106,.12)}
+#noor-assistant .assistant-shell{overflow:hidden;border:1px solid rgba(226,195,106,.38);border-radius:24px;background:radial-gradient(ellipse at top right,rgba(226,195,106,.11),transparent 48%),linear-gradient(145deg,#151510,#090a09);box-shadow:0 22px 60px rgba(0,0,0,.32)}
+#noor-assistant .assistant-head{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}
+#noor-assistant .assistant-mark{width:48px;height:48px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--gold);border-radius:16px;color:var(--gold-soft);font-size:24px;background:rgba(226,195,106,.08)}
+#noor-assistant .assistant-head h3{margin:0;color:var(--gold-soft);font-size:20px}
+#noor-assistant .assistant-head p{margin:2px 0 0;color:var(--muted);font-size:13px}
+#noor-assistant .assistant-beta{margin-inline-start:auto;border:1px solid rgba(226,195,106,.35);border-radius:999px;padding:4px 9px;color:var(--gold-soft);font-size:11px;white-space:nowrap}
+#noor-assistant .assistant-body{padding:20px}
+#noor-assistant .assistant-note{padding:12px 14px;border-radius:12px;background:rgba(226,195,106,.07);border:1px solid rgba(226,195,106,.15);color:#d9d0b9;font-size:13px}
+#noor-assistant .assistant-prompts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+#noor-assistant .assistant-prompts button{background:#17160f;border:1px solid rgba(226,195,106,.32);border-radius:999px;padding:8px 12px;color:#f1e4bc;font:inherit;font-size:13px;cursor:pointer}
+#noor-assistant .assistant-chat{display:flex;flex-direction:column;gap:10px;max-height:260px;overflow:auto;margin:14px 0}
+#noor-assistant .assistant-message{max-width:92%;padding:11px 14px;border-radius:15px;white-space:pre-wrap;line-height:1.8;font-size:14px}
+#noor-assistant .assistant-message.bot{align-self:flex-start;background:#191912;border:1px solid rgba(226,195,106,.17);border-end-start-radius:4px}
+#noor-assistant .assistant-message.user{align-self:flex-end;background:rgba(226,195,106,.13);border:1px solid rgba(226,195,106,.28);border-end-end-radius:4px}
+#noor-assistant .assistant-form{display:flex;gap:9px}
+#noor-assistant .assistant-form input{min-width:0;flex:1;border:1px solid rgba(226,195,106,.35);border-radius:14px;padding:13px 14px;background:#080908;color:#fff;font:inherit}
+#noor-assistant .assistant-form input:focus{outline:2px solid rgba(226,195,106,.35);outline-offset:1px}
+#noor-assistant .assistant-form button{border:0;border-radius:14px;padding:0 18px;background:linear-gradient(135deg,#f0d98f,#b18b2f);color:#17130a;font:inherit;font-weight:bold;cursor:pointer}
+@media(max-width:520px){#noor-assistant .assistant-head{padding:16px}#noor-assistant .assistant-body{padding:14px}#noor-assistant .assistant-beta{font-size:10px}#noor-assistant .assistant-form button{padding:0 13px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -111,6 +141,34 @@ html[dir="ltr"] .notice{border-right:0;border-left:3px solid var(--gold)}
       <a class="btn" href="#adhkar" data-ar="ابدأ بالذكر" data-en="Begin Dhikr">ابدأ بالذكر</a>
     </div>
   </section>
+
+  <section id="noor-assistant" aria-labelledby="noor-assistant-title">
+    <h2>✧ اسأل مساعد نور الإسلامي</h2>
+    <div class="assistant-shell">
+      <div class="assistant-head">
+        <div class="assistant-mark" aria-hidden="true">۞</div>
+        <div><h3 id="noor-assistant-title" data-ar="مساعد نور الإسلامي" data-en="Noor Islamic Assistant">مساعد نور الإسلامي</h3><p data-ar="مساحة للأسئلة والتعلّم بهدوء" data-en="A calm space for questions and learning">مساحة للأسئلة والتعلّم بهدوء</p></div>
+        <span class="assistant-beta" data-ar="نسخة تجريبية" data-en="Preview">نسخة تجريبية</span>
+      </div>
+      <div class="assistant-body">
+        <div class="assistant-note" data-ar="هذه واجهة أولية وليست ذكاءً اصطناعيًا متصلًا بعد. الإجابات التجريبية محدودة؛ سنحتاج إلى ربط خدمة ذكاء اصطناعي آمنة قبل الاعتماد عليها للأسئلة الدينية." data-en="This is an initial interface and is not connected to an AI service yet. Preview replies are limited; a secure AI connection is needed before relying on it for religious questions.">هذه واجهة أولية وليست ذكاءً اصطناعيًا متصلًا بعد. الإجابات التجريبية محدودة؛ سنحتاج إلى ربط خدمة ذكاء اصطناعي آمنة قبل الاعتماد عليها للأسئلة الدينية.</div>
+        <div class="assistant-prompts" aria-label="أسئلة مقترحة">
+          <button type="button" data-question="كيف أبدأ يومي بالأذكار؟">أذكار الصباح</button>
+          <button type="button" data-question="ما فضل قراءة القرآن؟">فضل القرآن</button>
+          <button type="button" data-question="كيف أحافظ على الصلاة؟">المحافظة على الصلاة</button>
+        </div>
+        <div id="noorAssistantChat" class="assistant-chat" aria-live="polite">
+          <div class="assistant-message bot" data-ar="أهلًا بك! اختر سؤالًا مقترحًا أو اكتب سؤالك. تذكّر أن هذه النسخة تجريبية وليست فتوى شرعية." data-en="Welcome! Choose a suggested question or type yours. This preview is not a religious ruling.">أهلًا بك! اختر سؤالًا مقترحًا أو اكتب سؤالك. تذكّر أن هذه النسخة تجريبية وليست فتوى شرعية.</div>
+        </div>
+        <form id="noorAssistantForm" class="assistant-form">
+          <input id="noorAssistantInput" type="text" maxlength="500" autocomplete="off" aria-label="اكتب سؤالك" placeholder="اكتب سؤالك هنا..." data-ar-placeholder="اكتب سؤالك هنا..." data-en-placeholder="Type your question...">
+          <button type="submit" data-ar="إرسال" data-en="Send">إرسال</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
 
   <section id="quran">
     <h2>۞ القرآن الكريم</h2>
@@ -654,6 +712,25 @@ if (!sessionStorage.getItem('noor-greeting-seen')) {
   toast.append(msg,close); document.body.appendChild(toast);
   window.setTimeout(()=>{if(toast.isConnected){toast.remove();sessionStorage.setItem('noor-greeting-seen','1');}},6500);
 }
+
+
+/* Preview assistant: honest local guidance until a secure AI endpoint is configured. */
+(function(){
+  const form=document.getElementById('noorAssistantForm');
+  const input=document.getElementById('noorAssistantInput');
+  const chat=document.getElementById('noorAssistantChat');
+  if(!form||!input||!chat)return;
+  const answers=[
+    {keys:['اذكار الصباح','أذكار الصباح','الصباح'],ar:'ابدأ بما تيسّر من أذكار الصباح من مصدر موثوق مثل حصن المسلم، واقرأ الذكر بنصّه الصحيح. يمكنك فتح قسم الأذكار في الموقع. هذه إرشادات عامة وليست إجابة مولّدة بالذكاء الاصطناعي.',en:'Begin with the morning remembrances from a trusted source such as Hisn al-Muslim, keeping the wording accurate. Open the Adhkar section on this site. This is general guidance, not an AI-generated answer.'},
+    {keys:['قرآن','القران','القرآن','فضل قراءة'],ar:'قراءة القرآن عبادة عظيمة، والأفضل أن تقرأ بتدبّر واستمرار، ولو بقدر يسير يوميًا. لمعرفة فضل آية أو تفسيرها، ارجع إلى تفسير موثوق ولا تنسب قولًا إلى الشرع بلا مصدر.',en:'Reciting the Qur’an is a great act of worship. Read thoughtfully and consistently, even a little each day. For a verse’s meaning, consult a reliable tafsir and avoid attributing claims to religion without a source.'},
+    {keys:['صلاة','الصلاة','أحافظ','احافظ'],ar:'للمحافظة على الصلاة، جرّب ضبط تنبيهات الأوقات، وتجهيز مكان الصلاة، والبدء فور دخول الوقت. إذا كان سؤالك عن حكم شرعي محدد، فاسأل عالمًا موثوقًا واذكر تفاصيل الحالة.',en:'To maintain prayer, set prayer-time reminders, prepare a prayer space, and aim to pray when the time begins. For a specific religious ruling, consult a trusted scholar and explain the details.'}
+  ];
+  function add(text,who){const el=document.createElement('div');el.className='assistant-message '+who;el.textContent=text;chat.appendChild(el);chat.scrollTop=chat.scrollHeight;}
+  function reply(q){const lower=q.toLowerCase();const item=answers.find(a=>a.keys.some(k=>lower.includes(k.toLowerCase())));const en=document.documentElement.lang==='en';if(item)return en?item.en:item.ar;return en?'This preview cannot provide a reliable answer to that question yet because it is not connected to an AI service. Please consult a trusted scholar for a religious ruling.':'هذه النسخة التجريبية لا تستطيع تقديم جواب موثوق لهذا السؤال لأنها غير متصلة بخدمة ذكاء اصطناعي بعد. للحكم الشرعي، يُرجى سؤال عالم موثوق.';}
+  form.addEventListener('submit',function(e){e.preventDefault();const q=input.value.trim();if(!q)return;add(q,'user');input.value='';window.setTimeout(()=>add(reply(q),'bot'),220);});
+  document.querySelectorAll('#noor-assistant [data-question]').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.question;form.requestSubmit();}));
+  document.querySelectorAll('[data-ar-placeholder][data-en-placeholder]').forEach(el=>{const sync=()=>el.placeholder=document.documentElement.lang==='en'?el.dataset.enPlaceholder:el.dataset.arPlaceholder;sync();document.getElementById('languageToggle')?.addEventListener('click',sync);});
+})();
 
 </script>
 </body>
