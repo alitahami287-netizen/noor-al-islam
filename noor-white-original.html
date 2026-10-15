@@ -82,7 +82,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
  <section class="section" id="adhkar">
   <div class="section-head"><div><h2>🤲 الأذكار اليومية</h2><p>أذكار مختارة مع العدّ والتقدّم بين الأذكار.</p></div><span class="section-tag">ذكر وطمأنينة</span></div>
   <div class="panel">
-   <div class="pills" id="dhikrTabs"><button class="pill active" data-kind="morning">الصباح</button><button class="pill" data-kind="evening">المساء</button><button class="pill" data-kind="after">بعد الصلاة</button><button class="pill" data-kind="general">أذكار متنوعة</button><button class="pill" data-kind="sleep">قبل النوم</button></div>
+   <div class="pills" id="dhikrTabs"><button class="pill active" data-kind="morning">الصباح</button><button class="pill" data-kind="evening">المساء</button><button class="pill" data-kind="after">بعد الصلاة</button><button class="pill" data-kind="general">أذكار متنوعة</button><button class="pill" data-kind="sleep">قبل النوم</button><button class="pill" data-kind="beforePrayer">قبل الصلاة</button><button class="pill" data-kind="afterAdhan">بعد الأذان</button><button class="pill" data-kind="beforeAdhan">قبل الأذان</button><button class="pill" data-kind="toilet">دخول الخلاء والخروج منه</button></div>
    <div class="dhikr-card"><div class="dhikr-desc" id="dhikrCategory">أذكار الصباح</div><div class="dhikr-arabic" id="dhikrText">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div><div class="dhikr-desc" id="dhikrRef">كرر الذكر بتدبّر</div><button class="big-count" id="dhikrCounter" aria-label="عدّ الذكر">0</button><div class="dhikr-desc" id="dhikrProgress">التكرار المتبقي: 3</div><div class="row" style="justify-content:center;margin-top:12px"><button class="btn gold" id="dhikrTap">سبّح / تمّ الذكر</button><button class="btn" id="dhikrNext">الذكر التالي ←</button><button class="btn blue" id="dhikrReset">إعادة العدّ</button></div></div>
    <p class="subtext" style="margin-top:12px">تنبيه: هذه مجموعة بداية، وليست بديلاً عن مراجعة الأذكار وأعدادها من مصادرها المعتمدة.</p>
   </div>
@@ -289,6 +289,26 @@ sleep:[
  ['الْحَمْدُ لِلَّهِ','٣٣ مرة قبل النوم — مع التسبيح ٣٣ مرة والتكبير ٣٤ مرة، صحيح البخاري ومسلم',33],
  ['اللَّهُ أَكْبَرُ','٣٤ مرة قبل النوم — مع التسبيح والتحميد، صحيح البخاري ومسلم',34]
  ],
+beforePrayer:[
+['اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا','دعاء النور الوارد في صحيح مسلم؛ يقال في مواضع منها الذهاب إلى الصلاة',1],
+['اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ','يقال عند دخول المسجد — صحيح مسلم',1],
+['بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ','ذكر دخول المسجد، ورد في صحيح مسلم',1],
+['اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ','يقال عند الخروج من المسجد — صحيح مسلم',1]
+],
+afterAdhan:[
+['ترديد ألفاظ الأذان','يُستحب أن يقول المستمع مثل ما يقول المؤذن، إلا عند الحيعلتين فيقول: لا حول ولا قوة إلا بالله — صحيح مسلم',1],
+['اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ، وَالصَّلَاةِ الْقَائِمَةِ، آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ، وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ','دعاء بعد الأذان — صحيح البخاري',1],
+['الصلاة على النبي ﷺ','يُستحب الصلاة على النبي ﷺ بعد انتهاء الأذان، ثم الدعاء بدعاء الوسيلة — صحيح مسلم',1]
+],
+beforeAdhan:[
+['سُبْحَانَ اللَّهِ وَبِحَمْدِهِ','ذكر عام جائز قبل الأذان وفي غيره من الأوقات؛ لا يُخصّص بذكر لازم قبل الأذان',1],
+['أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ','استغفار عام؛ لا يوجد ذكر ثابت مخصوص يجب قوله قبل الأذان',1],
+['اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ','الصلاة على النبي ﷺ من الذكر المشروع في سائر الأوقات',1]
+],
+toilet:[
+['اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ','دعاء دخول الخلاء — صحيح البخاري وصحيح مسلم',1],
+['غُفْرَانَكَ','يقال عند الخروج من الخلاء — رواه أبو داود والترمذي',1]
+],
 after:[
 ['أَسْتَغْفِرُ اللَّهَ','صحيح مسلم — ثلاث مرات بعد الصلاة',3],
 ['اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ','صحيح مسلم — بعد السلام من الصلاة',1],
@@ -320,7 +340,7 @@ general:[
 ['بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا','صحيح البخاري — يقال عند النوم',1],
 ['الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ','صحيح البخاري — يقال عند الاستيقاظ',1]
 ]}
-let dhikrKind='morning',dhikrIndex=0,dhikrCount=0;const dhikrTitles={morning:'أذكار الصباح',evening:'أذكار المساء',after:'أذكار بعد الصلاة',general:'أذكار متنوعة',sleep:'أذكار قبل النوم'};
+let dhikrKind='morning',dhikrIndex=0,dhikrCount=0;const dhikrTitles={morning:'أذكار الصباح',evening:'أذكار المساء',after:'أذكار بعد الصلاة',general:'أذكار متنوعة',sleep:'أذكار قبل النوم',beforePrayer:'قبل الصلاة والذهاب للمسجد',afterAdhan:'بعد الأذان',beforeAdhan:'قبل الأذان — أذكار عامة',toilet:'دخول الخلاء والخروج منه'};
 function showDhikr(){const d=adhkar[dhikrKind][dhikrIndex];$('dhikrCategory').textContent=dhikrTitles[dhikrKind];$('dhikrText').textContent=d[0];$('dhikrRef').textContent=d[1];$('dhikrCounter').textContent=arabicNum(dhikrCount);$('dhikrProgress').textContent='العدد المستهدف: '+arabicNum(d[2])+' • المتبقي: '+arabicNum(Math.max(0,d[2]-dhikrCount))}
 document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-kind]').forEach(x=>x.classList.remove('active'));b.classList.add('active');dhikrKind=b.dataset.kind;dhikrIndex=0;dhikrCount=0;showDhikr()});
 $('dhikrTap').onclick=()=>{const goal=adhkar[dhikrKind][dhikrIndex][2];if(dhikrCount<goal)dhikrCount++;showDhikr();if(dhikrCount>=goal){$('dhikrProgress').textContent='اكتمل الذكر، بارك الله فيك. ننتقل للتالي…';$('dhikrTap').disabled=true;$('dhikrNext').disabled=true;setTimeout(()=>{dhikrIndex=(dhikrIndex+1)%adhkar[dhikrKind].length;dhikrCount=0;$('dhikrTap').disabled=false;$('dhikrNext').disabled=false;showDhikr()},900)}};
