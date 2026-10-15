@@ -59,9 +59,9 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
 <header>
  <div class="head">
   <div class="brand"><div class="brandmark">۞</div><div class="brandname">نور الإسلام<small>رفيق يومك إلى الطمأنينة</small></div></div>
-  <div class="head-actions"><button class="soft-btn" id="askAssistantTop" title="اسأل المساعد الإسلامي">🤖 اسأل</button><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
+  <div class="head-actions"><button class="soft-btn" id="fontBtn" title="تكبير الخط">Aa</button><button class="soft-btn" id="favoriteTop">☆ المحفوظات <span id="favCount">0</span></button></div>
  </div>
- <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#assistantPage">🤖 المساعد</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
+ <nav><a href="#home">الرئيسية</a><a href="#quran">القرآن</a><a href="#listen">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#tasbih">المسبحة</a><a href="#prayer">الصلاة والقبلة</a><a href="#hadith">الأحاديث</a><a href="#knowledge">تعلّم</a><a href="#sunnaBooks">المكتبة</a><a href="#wuduPage">💧 الوضوء</a><a href="#halalPage">🍃 الحلال والحرام</a><a href="#favoritesPage">☆ المحفوظات</a></nav>
 </header>
 <section class="hero" id="home"><div class="hero-box"><div class="hero-content">
  <span class="eyebrow">✦ مساحة للروح والقلب</span>
@@ -114,14 +114,39 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
  </section>
  <section class="section" id="prayer">
   <div class="section-head"><div><h2>🕌 الصلاة والقبلة</h2><p>احصل على مواقيت الصلاة التقريبية حسب موقعك.</p></div><span class="section-tag">مواقيت اليوم</span></div>
-  <div class="panel"><div class="row"><button class="btn gold" id="getPrayer">📍 حدّد موقعي واحسب الصلاة</button><span id="prayerLocation" class="subtext">يتطلب السماح بالموقع والاتصال بالإنترنت.</span></div><div id="prayerTimes" class="prayer-grid"><div class="prayer"><span>الفجر</span><strong>—:—</strong></div><div class="prayer"><span>الشروق</span><strong>—:—</strong></div><div class="prayer"><span>الظهر</span><strong>—:—</strong></div><div class="prayer"><span>العصر</span><strong>—:—</strong></div><div class="prayer"><span>المغرب</span><strong>—:—</strong></div><div class="prayer"><span>العشاء</span><strong>—:—</strong></div></div><div class="feature" style="margin-top:13px;background:linear-gradient(135deg,#fffefa,#edf7fa);border:1px solid #dcebf0;border-radius:17px;padding:14px"><strong style="color:#85642b">🧭 اتجاه القبلة</strong><div id="qiblaText">اضغط على زر تحديد الموقع لمعرفة اتجاه القبلة التقريبي.</div><div class="subtext">اتجاه القبلة يحتاج إلى إذن الموقع؛ تأكد من إعدادات جهازك.</div></div></div>
+  <div class="panel"><div class="row"><div class="field-wrap"><label class="label" for="cityInput">المدينة</label><input class="field" id="cityInput" placeholder="مثال: طهران أو بغداد" autocomplete="address-level2"></div><div class="field-wrap"><label class="label" for="countryInput">الدولة</label><input class="field" id="countryInput" placeholder="مثال: إيران أو العراق" autocomplete="country-name"></div></div><div class="row" style="margin-top:10px"><button class="btn gold" id="getCityPrayer">احسب مواقيت مدينتي</button><button class="btn" id="getPrayer">📍 حدّد موقعي بدلاً من ذلك</button></div><div class="row" style="margin-top:10px"><button class="btn gold" id="enableAdhan">🔔 تفعيل الأذان التلقائي</button><span id="prayerLocation" class="subtext">اكتب اسم المدينة والدولة، ثم احسب المواقيت.</span></div><div id="prayerTimes" class="prayer-grid"><div class="prayer"><span>الفجر</span><strong>—:—</strong></div><div class="prayer"><span>الشروق</span><strong>—:—</strong></div><div class="prayer"><span>الظهر</span><strong>—:—</strong></div><div class="prayer"><span>العصر</span><strong>—:—</strong></div><div class="prayer"><span>المغرب</span><strong>—:—</strong></div><div class="prayer"><span>العشاء</span><strong>—:—</strong></div></div><div class="feature" style="margin-top:13px;background:linear-gradient(135deg,#fffefa,#edf7fa);border:1px solid #dcebf0;border-radius:17px;padding:14px"><strong style="color:#85642b">🧭 اتجاه القبلة</strong><div id="qiblaText">اضغط على زر تحديد الموقع لمعرفة اتجاه القبلة التقريبي.</div><div class="subtext">اتجاه القبلة يحتاج إلى إذن الموقع؛ تأكد من إعدادات جهازك.</div></div></div>
   <div class="panel" style="margin-top:13px">
    <div class="section-head"><div><h2>🔔 الأذان ومؤذنو الحرمين</h2><p>اختر صوت المؤذن واستمع من داخل نور الإسلام.</p></div><span class="section-tag">الأذان</span></div>
    <div class="row"><div class="field-wrap"><label class="label" for="muadhinSelect">اختر المؤذن</label><select class="field" id="muadhinSelect">
     <option value="nasser">ناصر القطامي</option><option value="mishary">مشاري العفاسي</option><option value="yasser">ياسر الدوسري</option><option value="sudais">عبد الرحمن السديس</option><option value="maher">ماهر المعيقلي</option><option value="shuraim">سعود الشريم</option><option value="ali">علي ملا</option><option value="fajr">فارس عباد</option><option value="husary">محمود خليل الحصري</option><option value="minshawi">محمد صديق المنشاوي</option><option value="qatami2">ناصر القطامي — تسجيل آخر</option><option value="makkah">مؤذن المسجد الحرام</option><option value="madinah">مؤذن المسجد النبوي</option><option value="abdulrahman">عبد الرحمن العوسي</option><option value="idrees">وليد إدريس</option><option value="badr">صلاح البدير</option><option value="nabil">نبيل الرفاعي</option><option value="naqshbandi">محمد رفعت</option><option value="mustafa">مصطفى إسماعيل</option><option value="general">أذان بصوت خاشع</option>
    </select></div><div class="field-wrap"><label class="label">الصلاة القادمة</label><div class="field" id="nextPrayerNote">تظهر بعد حساب مواقيت الصلاة</div></div></div>
    <div id="adhanPlayerBox" class="audio-bar"><div id="adhanStatus" style="font-size:12px;color:#567587;margin-bottom:7px">اختر ناصر القطامي للاستماع إلى تسجيل الأذان المتاح حالياً.</div><iframe id="adhanFrame" title="أذان ناصر القطامي" src="https://www.tvquran.com/ar/selection/48/embeddable" loading="lazy" style="width:100%;height:230px;border:0;border-radius:12px;background:white" allow="autoplay"></iframe></div>
-   <div class="message">تظهر هنا قائمة من 20 اختياراً للمؤذنين، لكن مصدر الصوت الموثوق المضمّن حالياً هو تسجيل ناصر القطامي. لن نشغّل تسجيلات منسوبة لأسماء أخرى قبل التحقق من روابطها.</div>
+   <div class="message">لتشغيل الأذان تلقائياً، احسب مواقيت مدينتك ثم اضغط «تفعيل الأذان التلقائي». يجب إبقاء صفحة الموقع مفتوحة والاتصال بالإنترنت؛ قد يمنع الهاتف التشغيل إذا أغلق المتصفح أو قيّد عمله في الخلفية. يمكنك تجربة الصوت من مشغّل الأذان أعلاه أيضاً.</div><audio id="automaticAdhanAudio" preload="none"></audio>
+  </div>
+ </section>
+ <section class="section" id="wuduPage">
+  <div class="section-head"><div><h2>💧 تعلّم الوضوء خطوة بخطوة</h2><p>شرح مبسّط يساعدك على تعلّم صفة الوضوء.</p></div><span class="section-tag">الطهارة</span></div>
+  <div class="panel">
+   <div class="list-item"><strong>١. النيّة والتسمية</strong><p>انوِ الوضوء بقلبك، وابدأ باسم الله.</p></div>
+   <div class="list-item"><strong>٢. غسل الكفين</strong><p>اغسل كفّيك جيداً ثلاث مرات.</p></div>
+   <div class="list-item"><strong>٣. المضمضة والاستنشاق</strong><p>تمضمض بالماء، واستنشق الماء برفق ثم أخرجه.</p></div>
+   <div class="list-item"><strong>٤. غسل الوجه</strong><p>اغسل الوجه كاملاً من منابت الشعر المعتادة إلى أسفل الذقن، ومن الأذن إلى الأذن.</p></div>
+   <div class="list-item"><strong>٥. غسل اليدين إلى المرفقين</strong><p>اغسل اليد اليمنى ثم اليسرى مع المرفقين.</p></div>
+   <div class="list-item"><strong>٦. مسح الرأس والأذنين</strong><p>امسح الرأس، وامسح الأذنين وفق الصفة التي تعلّمتها من مصدر موثوق.</p></div>
+   <div class="list-item"><strong>٧. غسل القدمين</strong><p>اغسل القدم اليمنى ثم اليسرى مع الكعبين، وتأكد من وصول الماء إلى المواضع المطلوبة.</p></div>
+   <div class="feature" style="margin-top:12px"><strong>تذكير مهم</strong><p>هذه خلاصة تعليمية عامة؛ قد تختلف بعض التفاصيل بين المذاهب الإسلامية. إذا كنت تتبع مذهباً معيناً، فتعلّم الصفة المعتمدة من معلّم موثوق.</p><a href="https://islamqa.info/ar" target="_blank" rel="noopener noreferrer">اقرأ وتعلّم من مصدر إسلامي</a></div>
+   <button class="btn" onclick="location.hash='#knowledge'">العودة إلى مركز المعرفة</button>
+  </div>
+ </section>
+ <section class="section" id="halalPage">
+  <div class="section-head"><div><h2>🍃 الحلال والحرام</h2><p>أمثلة عامة للتعلّم، وليست فتوى لكل حالة.</p></div><span class="section-tag">أحكام الطعام والتعامل</span></div>
+  <div class="panel">
+   <div class="list-item"><strong>✅ أمثلة شائعة على الحلال</strong><p>الفواكه والخضروات، والحبوب، والماء، والأطعمة المباحة ذات المكونات الواضحة، واللحوم المذبوحة وفق الأحكام الشرعية.</p></div>
+   <div class="list-item"><strong>⛔ أمثلة واضحة على الحرام</strong><p>لحم الخنزير ومشتقاته، والخمر والمشروبات المسكرة، والسرقة، والغش، وأكل أموال الناس بالباطل.</p></div>
+   <div class="list-item"><strong>🔎 أشياء تحتاج إلى التحقق</strong><p>الجيلاتين، وبعض المنكهات والإنزيمات، والمكملات، واللحوم مجهولة المصدر، والمنتجات التي تحتوي على كحول أو مكونات غير واضحة؛ قد يتوقف الحكم على المصدر والتركيز وطريقة التصنيع.</p></div>
+   <div class="list-item"><strong>🤝 في المعاملات</strong><p>الصدق والأمانة والوفاء بالعهد من الأخلاق المطلوبة، بينما الغش والرشوة والظلم محرّمة. أما المعاملات المالية المعقدة فتحتاج إلى سؤال مختص موثوق.</p></div>
+   <div class="feature" style="margin-top:12px"><strong>كيف تتأكد؟</strong><p>اقرأ قائمة المكونات، وابحث عن شهادة حلال موثوقة عند الحاجة، واسأل جهة إفتاء مؤهلة عن المنتجات أو الحالات المختلف فيها. لا يمكن الحكم على كل منتج من اسمه فقط.</p><a href="https://islamqa.info/ar" target="_blank" rel="noopener noreferrer">مصدر للتوسّع في الأحكام</a></div>
+   <button class="btn" onclick="location.hash='#knowledge'">العودة إلى مركز المعرفة</button>
   </div>
  </section>
  <section class="section" id="hadith">
@@ -138,18 +163,9 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
   <div class="grid">
    <article class="tile"><div class="tile-icon">🌙</div><h3>التاريخ الهجري</h3><p id="hijriFull">جارٍ حساب التاريخ...</p><button class="btn" id="refreshDate">تحديث التاريخ</button></article>
    <article class="tile"><div class="tile-icon">⭐</div><h3>آياتي المحفوظة</h3><p>اجمع الآيات التي تريد الرجوع إليها.</p><button class="btn" id="showFavorites">عرض المحفوظات</button></article>
-   <article class="tile"><div class="tile-icon">🧠</div><h3>اسأل المساعد الإسلامي</h3><p>أسئلة تعليمية مختارة عن الصلاة والصيام والوضوء.</p><button class="btn" id="openAssistant">ابدأ الأسئلة</button></article>
    <article class="tile"><div class="tile-icon">📅</div><h3>وردك اليومي</h3><p id="dailySummary">ابدأ وردك اليوم وسجّل تقدّمك على هذا الجهاز.</p><button class="btn" id="markToday">أنجزت وردي اليوم ✓</button></article>
    <article class="tile"><div class="tile-icon">🔎</div><h3>بحث في القرآن</h3><p>اكتب كلمة عربية للبحث في السورة المفتوحة.</p><button class="btn" id="focusSearch">ابدأ البحث</button></article>
    <article class="tile"><div class="tile-icon">📚</div><h3>مكتبة المعرفة</h3><p>ملاحظات قصيرة تساعدك على فهم العبادات.</p><button class="btn" id="openLibrary">افتح المكتبة</button></article>
-  </div>
-  <div id="assistantBox" class="panel assistant-panel" style="display:none;margin-top:13px">
-   <div class="assistant-hero"><div class="assistant-avatar">۞</div><div class="assistant-title"><span class="section-tag">مساعد نور الإسلام</span><h2>اسأل المساعد الإسلامي</h2><p>تعلّم بهدوء، خطوة بخطوة 🤍</p></div><button class="btn assistant-close" id="closeAssistant">إغلاق</button></div>
-   <div class="assistant-note">✨ اسأل بالعربية أو English عن العبادات أو تعلّم القرآن. تُعرض إرشادات تعليمية عامة، وليست فتاوى.</div>
-   <div class="assistant-prompts"><button class="assistant-prompt" data-question="wudu">💧 تعلّم الوضوء</button><button class="assistant-prompt" data-question="prayer">🕌 أهمية الصلاة</button><button class="assistant-prompt" data-question="fasting">🌙 الصيام</button><button class="assistant-prompt" data-question="quran">📖 حفظ القرآن</button><button class="assistant-prompt" data-question="verse">🔎 فهم آية</button><button class="assistant-prompt" data-question="adhkar">🤲 الأذكار</button></div>
-   <div id="assistantChat" class="assistant-chat" aria-live="polite"><div class="assistant-message assistant-bot"><span class="assistant-message-label">نور الإسلام · المساعد</span>أهلاً بك! 🌿 اكتب سؤالك، وسأساعدك بإرشادات تعليمية عامة. حالياً أعمل بوضع الإرشادات الأساسية، وليس عبر ذكاء اصطناعي مباشر.</div></div>
-   <form id="assistantForm" class="assistant-compose"><input class="field" id="assistantQuestion" type="text" placeholder="اكتب سؤالك هنا..." aria-label="اكتب سؤالك للمساعد الإسلامي" autocomplete="off" maxlength="500"><button class="btn assistant-send" id="sendAssistantQuestion" type="submit">إرسال ↑</button></form>
-   <div class="assistant-footer">للتثبّت من النصوص: <a href="https://quran.com/" target="_blank" rel="noopener noreferrer">القرآن الكريم</a> · <a href="https://sunnah.com/" target="_blank" rel="noopener noreferrer">مصادر الحديث</a><br><span>للفتاوى الشخصية أو المسائل المختلف فيها، ارجع إلى عالم مؤهل.</span></div>
   </div>
   <div id="libraryBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>📚 مكتبة صغيرة</h2><p>بطاقات معرفية مختصرة داخل نور الإسلام.</p></div><button class="btn" id="closeLibrary">إغلاق</button></div><div class="list-item"><strong>الوضوء</strong><p>تعلّم صفة الوضوء من مصدر موثوق، واهتم بترتيب الأعضاء وإتمام الطهارة.</p></div><div class="list-item"><strong>الصلاة</strong><p>الصلاة عبادة عظيمة، تعلّم شروطها وأركانها من معلّم أو مصدر إسلامي موثوق.</p></div><div class="list-item"><strong>تدبّر القرآن</strong><p>ابدأ بآيات قليلة، واقرأ تفسيراً موثوقاً لمعانيها، ثم اعمل بما تعلمت.</p></div></div>
   <div id="favoritesBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>☆ آياتي المحفوظة</h2><p>تُحفظ محلياً في متصفح هذا الجهاز.</p></div><button class="btn" id="closeFavorites">إغلاق</button></div><div id="favoritesList" class="loading">لا توجد آيات محفوظة بعد.</div></div>
@@ -183,7 +199,6 @@ function setupSeparatePages(){
   if(box)page.appendChild(box);
   return page;
  }
- makePage('assistantPage','اسأل المساعد الإسلامي','🤖',assistantBox);
  makePage('favoritesPage','الآيات المحفوظة','☆',favoritesBox);
  const pages=[hero,stats,...Array.from(main.querySelectorAll(':scope > .section'))];
  pages.forEach(el=>{if(el)el.classList.add('page-hidden')});
@@ -200,16 +215,10 @@ function setupSeparatePages(){
  document.addEventListener('click',function(e){
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=a.getAttribute('href').slice(1);
-  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','assistantPage','favoritesPage'].includes(id)){
+  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(id)){
    e.preventDefault();showPage(id);
   }
  });
- const openAssistant=document.getElementById('openAssistant');
- if(openAssistant)openAssistant.onclick=()=>{showPage('assistantPage');assistantBox.style.display='block'};
- const topAssistant=document.getElementById('askAssistantTop');
- if(topAssistant)topAssistant.onclick=()=>{showPage('assistantPage');assistantBox.style.display='block';setTimeout(()=>document.getElementById('assistantQuestion').focus(),250)};
- const closeAssistant=document.getElementById('closeAssistant');
- if(closeAssistant)closeAssistant.onclick=()=>showPage('knowledge');
  const favoriteTop=document.getElementById('favoriteTop'),showFavorites=document.getElementById('showFavorites');
  const openFavorites=()=>{showPage('favoritesPage');favoritesBox.style.display='block'};
  if(favoriteTop)favoriteTop.onclick=openFavorites;if(showFavorites)showFavorites.onclick=openFavorites;
@@ -220,7 +229,7 @@ function setupSeparatePages(){
  const closeLibrary=document.getElementById('closeLibrary');
  if(closeLibrary)closeLibrary.onclick=()=>document.getElementById('libraryBox').style.display='none';
  const initial=location.hash.slice(1);
- showPage(['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','assistantPage','favoritesPage'].includes(initial)?initial:'home',false);
+ showPage(['home','quran','listen','adhkar','tasbih','prayer','hadith','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(initial)?initial:'home',false);
 }
 
 const surahNames=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
@@ -321,29 +330,57 @@ $('dhikrTap').onclick=()=>{const goal=adhkar[dhikrKind][dhikrIndex][2];if(dhikrC
 $('dhikrCounter').onclick=$('dhikrTap').onclick;$('dhikrNext').onclick=()=>{dhikrIndex=(dhikrIndex+1)%adhkar[dhikrKind].length;dhikrCount=0;showDhikr()};$('dhikrReset').onclick=()=>{dhikrCount=0;showDhikr()};showDhikr();
 let tasbihCount=+(localStorage.getItem('noorTasbih')||0);function updateTasbih(){const goal=+$('goal').value;$('tasbihButton').textContent=arabicNum(tasbihCount);$('tasbihProgress').textContent=arabicNum(tasbihCount)+' من '+arabicNum(goal);$('goalBar').style.width=Math.min(100,tasbihCount/goal*100)+'%';$('dailyCount').textContent=arabicNum(tasbihCount);$('tasbihLabel').textContent=$('tasbihType').value;localStorage.setItem('noorTasbih',tasbihCount);$('dailySummary').textContent='أنجزت '+arabicNum(tasbihCount)+' تسبيحات على هذا الجهاز.'}
 function tasbihAdd(){tasbihCount++;updateTasbih()}$('tasbihButton').onclick=tasbihAdd;$('tasbihTap').onclick=tasbihAdd;$('tasbihUndo').onclick=()=>{tasbihCount=Math.max(0,tasbihCount-1);updateTasbih()};$('tasbihReset').onclick=()=>{tasbihCount=0;updateTasbih()};$('tasbihType').onchange=updateTasbih;$('goal').onchange=updateTasbih;updateTasbih();
-$('getPrayer').onclick=()=>{if(!navigator.geolocation){$('prayerLocation').textContent='المتصفح لا يدعم تحديد الموقع.';return}$('prayerLocation').textContent='جارٍ تحديد الموقع...';navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;try{const d=new Date();const url='https://api.aladhan.com/v1/timings/'+Math.floor(d.getTime()/1000)+'?latitude='+lat+'&longitude='+lon+'&method=3';const r=await fetch(url);const j=await r.json();const t=j.data.timings;const entries=[['الفجر',t.Fajr],['الشروق',t.Sunrise],['الظهر',t.Dhuhr],['العصر',t.Asr],['المغرب',t.Maghrib],['العشاء',t.Isha]];$('prayerTimes').innerHTML='';entries.forEach(e=>{const div=document.createElement('div');div.className='prayer';const s=document.createElement('span');s.textContent=e[0];const b=document.createElement('strong');b.textContent=e[1];div.append(s,b);$('prayerTimes').append(div)});$('prayerLocation').textContent='تم حساب المواقيت حسب موقع جهازك.';const qr=await fetch('https://api.aladhan.com/v1/qibla/'+lat+'/'+lon);const qj=await qr.json();const bearing=Math.round(qj.data.direction);$('qiblaText').textContent='اتجاه القبلة التقريبي: '+arabicNum(bearing)+'° من الشمال.';const nowMinutes=d.getHours()*60+d.getMinutes();const ordered=[['الفجر',t.Fajr],['الظهر',t.Dhuhr],['العصر',t.Asr],['المغرب',t.Maghrib],['العشاء',t.Isha]];const next=ordered.find(p=>{const parts=p[1].split(':').map(Number);return parts[0]*60+parts[1]>nowMinutes});$('nextPrayerNote').textContent=next?'الصلاة القادمة: '+next[0]+' — '+next[1]:'الصلاة القادمة: الفجر غداً';}catch(e){$('prayerLocation').textContent='تعذّر تحميل المواقيت. حاول لاحقاً.'}},()=>{$('prayerLocation').textContent='لم يتم السماح بالموقع. يمكنك تفعيل إذن الموقع من إعدادات المتصفح.'},{enableHighAccuracy:false,timeout:12000})};
+let prayerCache=null,adhanAutoEnabled=false,lastAdhanKey='';
+function renderPrayerTimes(t,locationLabel){
+ const entries=[['الفجر',t.Fajr],['الشروق',t.Sunrise],['الظهر',t.Dhuhr],['العصر',t.Asr],['المغرب',t.Maghrib],['العشاء',t.Isha]];
+ $('prayerTimes').innerHTML='';
+ entries.forEach(e=>{const div=document.createElement('div');div.className='prayer';const label=document.createElement('span');label.textContent=e[0];const time=document.createElement('strong');time.textContent=e[1];div.append(label,time);$('prayerTimes').append(div)});
+ prayerCache={timings:t,dateKey:new Date().toLocaleDateString('en-CA'),location:locationLabel};
+ $('prayerLocation').textContent='تم تحميل المواقيت: '+locationLabel;
+ updateNextPrayer();
+}
+function updateNextPrayer(){
+ if(!prayerCache)return;
+ const now=new Date(),nowMinutes=now.getHours()*60+now.getMinutes();
+ const ordered=[['الفجر',prayerCache.timings.Fajr],['الظهر',prayerCache.timings.Dhuhr],['العصر',prayerCache.timings.Asr],['المغرب',prayerCache.timings.Maghrib],['العشاء',prayerCache.timings.Isha]];
+ const next=ordered.find(p=>{const parts=p[1].split(':').map(Number);return parts[0]*60+parts[1]>nowMinutes});
+ $('nextPrayerNote').textContent=next?'الصلاة القادمة: '+next[0]+' — '+next[1]:'الصلاة القادمة: الفجر غداً';
+}
+async function fetchCityPrayer(){
+ const city=$('cityInput').value.trim(),country=$('countryInput').value.trim();
+ if(!city||!country){$('prayerLocation').textContent='اكتب المدينة والدولة أولاً.';return}
+ $('prayerLocation').textContent='جارٍ حساب المواقيت...';
+ try{
+  const now=new Date(),date=now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+  const url='https://api.aladhan.com/v1/timingsByCity/'+date+'?'+new URLSearchParams({city,country,method:'3'});
+  const res=await fetch(url);if(!res.ok)throw Error('network');const json=await res.json();if(json.code!==200||!json.data)throw Error('data');
+  renderPrayerTimes(json.data.timings,city+', '+country);
+  localStorage.setItem('noorPrayerCity',city);localStorage.setItem('noorPrayerCountry',country);
+ }catch(e){$('prayerLocation').textContent='لم نتمكن من العثور على المدينة. تأكد من كتابة المدينة والدولة ثم حاول مرة أخرى.'}
+}
+$('getCityPrayer').onclick=fetchCityPrayer;
+$('getPrayer').onclick=()=>{if(!navigator.geolocation){$('prayerLocation').textContent='المتصفح لا يدعم تحديد الموقع.';return}$('prayerLocation').textContent='جارٍ تحديد الموقع...';navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;try{const d=new Date();const url='https://api.aladhan.com/v1/timings/'+Math.floor(d.getTime()/1000)+'?latitude='+lat+'&longitude='+lon+'&method=3';const r=await fetch(url);if(!r.ok)throw Error('network');const j=await r.json();const t=j.data.timings;renderPrayerTimes(t,'موقع جهازك');const qr=await fetch('https://api.aladhan.com/v1/qibla/'+lat+'/'+lon);const qj=await qr.json();const bearing=Math.round(qj.data.direction);$('qiblaText').textContent='اتجاه القبلة التقريبي: '+arabicNum(bearing)+'° من الشمال.';}catch(e){$('prayerLocation').textContent='تعذّر تحميل المواقيت. حاول لاحقاً.'}},()=>{$('prayerLocation').textContent='لم يتم السماح بالموقع. يمكنك تفعيل إذن الموقع من إعدادات المتصفح.'},{enableHighAccuracy:false,timeout:12000})};
+$('enableAdhan').onclick=()=>{adhanAutoEnabled=true;lastAdhanKey='';$('adhanStatus').textContent='تم تفعيل محاولة تشغيل الأذان التلقائي. اترك الصفحة مفتوحة وارفع صوت الجهاز.';$('prayerLocation').textContent=prayerCache?'تم تفعيل الأذان التلقائي لجدول '+prayerCache.location+'.':'تم تفعيل الصوت؛ احسب مواقيت مدينتك الآن.';const audio=$('automaticAdhanAudio');audio.src='https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_02_Dhuhr_Adhan.mp3';audio.volume=0.01;audio.play().then(()=>{audio.pause();audio.currentTime=0;audio.volume=1;$('adhanStatus').textContent='الصوت جاهز. سيحاول الموقع تشغيل الأذان عند وقت الصلاة بينما الصفحة مفتوحة.'}).catch(()=>{$('adhanStatus').textContent='فعّل الصوت من زر الأذان مرة أخرى إذا منع المتصفح التشغيل التلقائي.'})};
+const adhanFiles={Fajr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_01_Fajr_Adhan.mp3',Dhuhr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_02_Dhuhr_Adhan.mp3',Asr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_03_Asr_Adhan.mp3',Maghrib:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_04_Maghrib_Adhan.mp3',Isha:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_05_Isha_Adhan.mp3'};
+function checkAutoAdhan(){
+ if(!adhanAutoEnabled||!prayerCache)return;
+ const now=new Date(),minute=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+ for(const key of ['Fajr','Dhuhr','Asr','Maghrib','Isha']){
+  if(prayerCache.timings[key]===minute){
+   const eventKey=now.toDateString()+'-'+key;
+   if(lastAdhanKey!==eventKey){lastAdhanKey=eventKey;const audio=$('automaticAdhanAudio');audio.src=adhanFiles[key];audio.currentTime=0;audio.play().then(()=>{$('adhanStatus').textContent='يُشغّل الأذان الآن.'}).catch(()=>{$('adhanStatus').textContent='لم يسمح المتصفح بالتشغيل التلقائي؛ افتح الصفحة واضغط تفعيل الأذان مرة أخرى.'})}
+  }
+ }
+}
+setInterval(()=>{updateNextPrayer();checkAutoAdhan()},10000);
+const savedCity=localStorage.getItem('noorPrayerCity'),savedCountry=localStorage.getItem('noorPrayerCountry');
+if(savedCity)$('cityInput').value=savedCity;if(savedCountry)$('countryInput').value=savedCountry;
+if(savedCity&&savedCountry)fetchCityPrayer();
 function updateHijri(){try{const now=new Date();const fmt=new Intl.DateTimeFormat('ar-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'});$('hijriDate').textContent=fmt.format(now);$('hijriFull').textContent=fmt.format(now)}catch(e){$('hijriDate').textContent='هجري';$('hijriFull').textContent='التاريخ الهجري غير متاح في هذا المتصفح.'}}updateHijri();$('refreshDate').onclick=updateHijri;
 function toggleBox(id){const el=$(id);el.style.display=el.style.display==='none'?'block':'none'}
 $('showFavorites').onclick=$('favoriteTop').onclick=()=>{toggleBox('favoritesBox');$('favoritesBox').scrollIntoView({behavior:'smooth',block:'nearest'})};$('closeFavorites').onclick=()=>{$('favoritesBox').style.display='none'};
 $('openAssistant').onclick=()=>{ $('assistantBox').style.display='block';$('assistantBox').scrollIntoView({behavior:'smooth',block:'center'})};$('closeAssistant').onclick=()=>{$('assistantBox').style.display='none'};
 $('openLibrary').onclick=()=>{toggleBox('libraryBox');$('libraryBox').scrollIntoView({behavior:'smooth',block:'nearest'})};$('closeLibrary').onclick=()=>{$('libraryBox').style.display='none'};
-const answers={
- wudu:'💧 الوضوء باختصار: انوِ الوضوء بقلبك، واغسل الكفين، وتمضمض واستنشق، واغسل الوجه، ثم اليدين إلى المرفقين، وامسح الرأس والأذنين، واغسل القدمين إلى الكعبين. التفاصيل قد تختلف في بعض الجزئيات بين المذاهب؛ تعلّم الصفة من مصدر موثوق.',
- prayer:'🕌 الصلاة ركن عظيم من أركان الإسلام، وهي صلة بين العبد وربه. ابدأ بتعلّم أوقات الصلوات وشروطها وأركانها، وحاول أداءها في وقتها. إن فاتتك صلاة أو عندك ظرف خاص، اسأل عالماً موثوقاً عن الحكم المناسب.',
- fasting:'🌙 الصيام عبادة تقوم على الإمساك عن المفطرات من طلوع الفجر إلى غروب الشمس بنية العبادة. توجد رخص وأحكام خاصة للمريض والمسافر وغيرهما، لذلك لا تعتمد على جواب عام في حالتك الشخصية.',
- quran:'📖 ابدأ بحفظ مقدار صغير كل يوم، واستمع إلى قارئ متقن، وكرّر الآيات، وراجع ما حفظته في الأيام السابقة. لفهم المعنى، اقرأ تفسيراً موثوقاً مع سياق الآيات، ويمكنك البدء بالسور القصيرة.',
- verse:'🔎 لفهم آية: اقرأها كاملة، واقرأ الآيات قبلها وبعدها، ثم راجع تفسيراً موثوقاً مثل تفسير السعدي أو ابن كثير. لا أنسب معنى محدداً إلى آية دون التثبت من النص والتفسير.',
- adhkar:'🤲 يمكنك البدء بأذكار الصباح والمساء والأذكار بعد الصلاة وأذكار النوم. حافظ على الألفاظ كما وردت في مصدر موثوق، وتحقق من درجة الحديث عند الحاجة؛ لا يلزم أن تبدأ بالكثير، فالثبات أهم.',
- zakat:'الزكاة عبادة مالية لها شروط وأنصبة وتفاصيل تختلف باختلاف نوع المال والحالة. أستطيع شرح المفهوم العام، لكن لحساب زكاتك بدقة أو معرفة حكم حالة خاصة، استعن بجهة إفتاء موثوقة.',
- hajj:'الحج عبادة عظيمة لها أركان وواجبات ومحظورات وتفاصيل عملية. تعلّم المناسك من دليل رسمي موثوق، واسأل مختصاً عن حالتك الصحية أو أي ظرف خاص.',
- hadith:'عند الاستشهاد بحديث، تحقّق من لفظه ومصدره ودرجة صحته في كتب الحديث أو عبر مصدر موثوق مثل Sunnah.com. لا أنسب حديثاً للنبي ﷺ دون تثبّت.',
- greeting:'أهلاً وسهلاً بك في نور الإسلام 🤍 اسألني عن الوضوء أو الصلاة أو الصيام أو القرآن أو الأذكار، وسأقدّم لك إرشادات تعليمية عامة مع توجيهك إلى مصادر موثوقة.',
- english:'Welcome to Noor Al-Islam 🤍 I can share general learning guidance about wudu, prayer, fasting, Quran study, and adhkar. This version uses a small built-in answer guide, not a live AI service. For personal religious rulings, consult a qualified scholar.',
- unknown:'أريد أن أساعدك بإجابة صحيحة، لكن لا أملك هنا جواباً موثوقاً كافياً لهذا السؤال. جرّب صياغته بشكل أوضح أو راجع مصدراً متخصصاً. في الفتاوى والمسائل الشخصية أو المختلف فيها، اسأل عالماً مؤهلاً.'
-};
-function addAssistantMessage(text,isUser=false){const chat=$('assistantChat');if(!chat)return;const bubble=document.createElement('div');bubble.className='assistant-message '+(isUser?'assistant-user':'assistant-bot');const label=document.createElement('span');label.className='assistant-message-label';label.textContent=isUser?'أنت':'نور الإسلام · المساعد';bubble.appendChild(label);bubble.appendChild(document.createTextNode(text));chat.appendChild(bubble);chat.scrollTop=chat.scrollHeight}
-function answerIslamicQuestion(raw){const original=(raw||'').trim();if(!original)return;addAssistantMessage(original,true);$('assistantQuestion').value='';const q=original.toLowerCase();let key='unknown';if(/\b(hello|hi|salam|assalamu|welcome)\b/.test(q)||q.includes('السلام عليكم')||q.includes('مرحبا')||q.includes('أهلا'))key='greeting';else if(/\b(wudu|ablution)\b/.test(q)||q.includes('وضوء'))key='wudu';else if(/\b(prayer|salah|salat)\b/.test(q)||q.includes('صلاة')||q.includes('الصلاة'))key='prayer';else if(/\b(fasting|fast|ramadan)\b/.test(q)||q.includes('صيام')||q.includes('الصيام')||q.includes('رمضان'))key='fasting';else if(/\b(quran|memorize|memorise|surah)\b/.test(q)||q.includes('قرآن')||q.includes('حفظ'))key='quran';else if(/\b(verse|tafsir|ayah|meaning of an ayah)\b/.test(q)||q.includes('آية')||q.includes('اية')||q.includes('تفسير'))key='verse';else if(/\b(adhkar|dhikr|dua|duaa|supplication)\b/.test(q)||q.includes('أذكار')||q.includes('اذكار')||q.includes('دعاء')||q.includes('أدعية'))key='adhkar';else if(/\b(zakat|zakaah)\b/.test(q)||q.includes('زكاة')||q.includes('الزكاة'))key='zakat';else if(/\b(hajj|umrah)\b/.test(q)||q.includes('حج')||q.includes('عمرة'))key='hajj';else if(/\b(hadith|hadeeth|sunnah)\b/.test(q)||q.includes('حديث')||q.includes('السنة'))key='hadith';else if(/[a-z]/i.test(q))key='english';addAssistantMessage(answers[key]);}
-document.querySelectorAll('.assistant-prompt').forEach(b=>b.onclick=()=>{const key=b.dataset.question;if(answers[key]){addAssistantMessage(b.textContent.trim(),true);addAssistantMessage(answers[key])}});const assistantForm=$('assistantForm');if(assistantForm)assistantForm.addEventListener('submit',e=>{e.preventDefault();answerIslamicQuestion($('assistantQuestion').value)});$('askAssistantTop').onclick=()=>{showPage('assistantPage');$('assistantBox').style.display='block';$('assistantBox').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('assistantQuestion').focus(),200)};
 $('markToday').onclick=()=>{localStorage.setItem('noorWirdDone',new Date().toDateString());$('dailySummary').textContent='ما شاء الله! سجّلت إنجاز وردك اليوم.'};if(localStorage.getItem('noorWirdDone')===new Date().toDateString())$('dailySummary').textContent='ما شاء الله! سجّلت إنجاز وردك اليوم.';
 $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollIntoView({behavior:'smooth',block:'center'})};
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
