@@ -32,26 +32,6 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
 #morePages{display:none}
 @media(max-width:520px){#morePages{display:block}}
 
-/* Premium assistant UI */
-.assistant-panel{overflow:hidden;padding:0;background:#fffefa;border-color:#e6d6b4}
-.assistant-hero{display:flex;align-items:center;gap:12px;padding:17px;background:linear-gradient(125deg,#fff9e9,#f6e8c7);border-bottom:1px solid #ead9b3}
-.assistant-avatar{width:48px;height:48px;flex:0 0 48px;display:grid;place-items:center;border-radius:17px;background:#fffdf7;border:1px solid #d9bd79;color:#a57a27;font-size:27px;box-shadow:0 5px 14px #b88b381a}
-.assistant-title{flex:1;min-width:0}.assistant-title h2{margin:5px 0 2px;color:#77551f;font-size:20px}.assistant-title p{margin:0;font-size:12px;color:#8d8068}.assistant-close{padding:8px 10px}
-.assistant-note{margin:14px 14px 10px;padding:10px 12px;border-radius:13px;background:#fbf6e9;color:#806b44;font-size:12px;line-height:1.8}
-.assistant-prompts{display:flex;gap:8px;overflow-x:auto;padding:3px 14px 12px;scrollbar-width:thin}
-.assistant-prompt{white-space:nowrap;border:1px solid #e8d8b6;background:#fffdf8;color:#846327;border-radius:18px;padding:8px 11px;font:inherit;font-size:12px;cursor:pointer}
-.assistant-prompt:active{background:#f4e5c4}
-.assistant-chat{display:flex;flex-direction:column;gap:10px;margin:0 14px;padding:12px 0;min-height:105px;max-height:340px;overflow-y:auto;border-top:1px solid #f0e7d5}
-.assistant-message{max-width:94%;padding:12px 13px;border-radius:16px;line-height:1.9;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
-.assistant-bot{align-self:flex-start;background:#faf5e9;border:1px solid #eee1c6;color:#493e2b;border-bottom-right-radius:5px}
-.assistant-user{align-self:flex-end;background:#b88b38;color:white;border:1px solid #a77c2d;border-bottom-left-radius:5px}
-.assistant-message-label{display:block;font-size:10px;font-weight:700;opacity:.75;margin-bottom:4px}
-.assistant-compose{display:flex;gap:8px;align-items:center;padding:12px 14px;background:#fffaf0;border-top:1px solid #eee2cb}
-.assistant-compose .field{flex:1;min-width:0;background:white;border-radius:14px}
-.assistant-send{white-space:nowrap;padding:11px 15px}
-.assistant-footer{padding:0 15px 15px;color:#897b63;font-size:11px;line-height:1.9}.assistant-footer a{color:#8b6728;font-weight:700}.assistant-footer span{color:#9a8b72}
-@media(max-width:420px){.assistant-hero{gap:8px;padding:13px}.assistant-avatar{width:40px;height:40px;flex-basis:40px;font-size:23px}.assistant-title h2{font-size:17px}.assistant-close{font-size:12px;padding:7px}.assistant-message{max-width:98%;font-size:13px}}
-
 </style>
 </head>
 <body>
@@ -192,7 +172,7 @@ const $=id=>document.getElementById(id);
 function setupSeparatePages(){
  document.body.classList.add('page-mode');
  const main=document.querySelector('main'),hero=document.getElementById('home'),stats=main.querySelector('.quick-stats');
- const assistantBox=document.getElementById('assistantBox'),favoritesBox=document.getElementById('favoritesBox');
+ const favoritesBox=document.getElementById('favoritesBox');
  function makePage(id,title,icon,box){
   let page=document.getElementById(id);
   if(!page){page=document.createElement('section');page.id=id;page.className='section';main.appendChild(page);}
