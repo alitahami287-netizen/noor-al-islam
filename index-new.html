@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fffaf0">
+<title>نور الإسلام | رحلتك إلى الطمأنينة</title>
+<style>
+:root {
+  --gold: #b58a35;
+  --gold-light: #e8cf8a;
+  --cream: #fffaf0;
+  --white: #ffffff;
+  --blue: #dceef7;
+  --text: #354454;
+  --muted: #7c8792;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.8;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+header {
+  background: rgba(255,255,255,.95);
+  border-bottom: 1px solid #eee3c8;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: bold;
+}
+.logo small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: normal;
+}
+.menu-btn {
+  border: 1px solid var(--gold-light);
+  background: var(--cream);
+  color: var(--gold);
+  border-radius: 12px;
+  padding: 7px 12px;
+}
+nav {
+  display: none;
+  padding: 8px 15px 15px;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+nav.show { display: flex; }
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  background: #fffaf0;
+  border: 1px solid #f0e5cb;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+}
+.hero {
+  text-align: center;
+  padding: 55px 20px 45px;
+  background:
+    radial-gradient(ellipse at top, #ffffff 0%, #fffaf0 65%),
+    var(--cream);
+  border-bottom: 1px solid #f0e5cb;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "۞";
+  position: absolute;
+  top: 0;
+  right: -12px;
+  font-size: 100px;
+  color: #e9d7a9;
+  opacity: .25;
+}
+.hero::after {
+  content: "۞";
+  position: absolute;
+  bottom: -25px;
+  left: -10px;
+  font-size: 120px;
+  color: #b8dcea;
+  opacity: .3;
+}
+.moon { font-size: 48px; }
+.hero h1 {
+  color: #a77b29;
+  font-size: clamp(29px, 7vw, 45px);
+  margin: 8px 0;
+}
+.hero p {
+  max-width: 540px;
+  margin: 12px auto 22px;
+  color: var(--muted);
+}
+.primary {
+  display: inline-block;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  color: white;
+  background: linear-gradient(135deg, #c9a24e, #a77b29);
+  text-decoration: none;
+  box-shadow: 0 6px 18px #b58a3530;
+}
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 16px 45px;
+}
+.section-title {
+  text-align: center;
+  margin: 35px 0 20px;
+}
+.section-title h2 {
+  color: #a77b29;
+  margin-bottom: 4px;
+}
+.section-title p {
+  color: var(--muted);
+  margin-top: 0;
+  font-size: 14px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+.card {
+  background: white;
+  border: 1px solid #f0e5cb;
+  border-radius: 19px;
+  padding: 19px 13px;
+  text-align: center;
+  box-shadow: 0 5px 18px #8c74310b;
+}
+.card .icon { font-size: 31px; }
+.card h3 { margin: 5px 0; color: #a77b29; font-size: 17px; }
+.card p { font-size: 12px; color: var(--muted); margin: 4px 0 13px; }
+.card a, .card button {
+  display: inline-block;
+  background: #fff8e8;
+  color: #997126;
+  border: 1px solid #ead8ad;
+  border-radius: 18px;
+  padding: 7px 12px;
+  text-decoration: none;
+  font-size: 12px;
+}
+.wide { grid-column: 1 / -1; }
+.feature {
+  background: linear-gradient(135deg, #fff, #edf7fb);
+  border: 1px solid #d8eaf2;
+  border-radius: 22px;
+  padding: 23px 18px;
+  text-align: center;
+  margin-top: 16px;
+}
+.feature h3 { color: #a77b29; margin-top: 0; }
+.dhikr {
+  background: white;
+  border: 1px solid #eee1c2;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  color: #92702e;
+  font-size: 21px;
+}
+.counter {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 15px auto;
+  border: 5px solid #e6cc88;
+  background: linear-gradient(145deg, white, #fff5d9);
+  color: #a77b29;
+  font-size: 34px;
+  box-shadow: 0 6px 20px #b58a3520;
+}
+.action {
+  border: none;
+  border-radius: 22px;
+  background: #b58a35;
+  color: white;
+  padding: 9px 18px;
+  margin: 4px;
+}
+.action.secondary {
+  background: #eaf4f8;
+  color: #526f80;
+}
+.note {
+  color: var(--muted);
+  font-size: 12px;
+}
+footer {
+  background: #fff;
+  border-top: 1px solid #eee3c8;
+  text-align: center;
+  padding: 25px 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+footer strong { color: #a77b29; }
+@media (min-width: 700px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .header-inner { padding: 14px 24px; }
+  .hero { padding: 75px 20px 60px; }
+  nav { display: flex; }
+  .menu-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      ✨ نور الإسلام
+      <small>رحلتك إلى الطمأنينة</small>
+    </div>
+    <button class="menu-btn" onclick="toggleMenu()">☰ القائمة</button>
+  </div>
+  <nav id="nav">
+    <a href="#home">الرئيسية</a>
+    <a href="#quran">القرآن الكريم</a>
+    <a href="#adhkar">الأذكار</a>
+    <a href="#tasbih">المسبحة</a>
+    <a href="#services">الخدمات</a>
+    <a href="#assistant">المساعد الإسلامي</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="moon">🕌</div>
+  <h1>السلام عليكم في ذكر الله</h1>
+  <p>
+    أهلاً بك في نور الإسلام، مساحة تجمع نور القرآن
+    وطمأنينة الذكر وجمال المعرفة الإسلامية.
+  </p>
+  <a class="primary" href="#services">اكتشف نور الإسلام ✨</a>
+</section>
+
+<main>
+  <section id="services">
+    <div class="section-title">
+      <h2>🌙 أبواب الخير</h2>
+      <p>اقترب من كل ما يزيد قلبك نوراً وطمأنينة</p>
+    </div>
+
+    <div class="cards">
+      <article class="card" id="quran">
+        <div class="icon">📖</div>
+        <h3>القرآن الكريم</h3>
+        <p>افتح المصحف واقرأ آيات الله.</p>
+        <a href="https://quran.com/" target="_blank" rel="noopener">اقرأ القرآن</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🎧</div>
+        <h3>التلاوات القرآنية</h3>
+        <p>استمع إلى تلاوات خاشعة.</p>
+        <a href="https://everyayah.com/" target="_blank" rel="noopener">استمع للتلاوات</a>
+      </article>
+
+      <article class="card" id="adhkar">
+        <div class="icon">🤲</div>
+        <h3>الأذكار</h3>
+        <p>اجعل لسانك عامراً بذكر الله.</p>
+        <a href="#daily-dhikr">ذكر اليوم</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📚</div>
+        <h3>الأحاديث النبوية</h3>
+        <p>تعرّف على هدي النبي ﷺ.</p>
+        <a href="https://sunnah.com/" target="_blank" rel="noopener">تصفّح الأحاديث</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">📕</div>
+        <h3>المكتبة الإسلامية</h3>
+        <p>مصادر للقراءة والتعلّم.</p>
+        <a href="https://waqfeya.net/" target="_blank" rel="noopener">افتح المكتبة</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🧭</div>
+        <h3>القبلة والصلاة</h3>
+        <p>أدوات لمعرفة اتجاه القبلة ومواقيت الصلاة.</p>
+        <a href="https://qiblafinder.withgoogle.com/" target="_blank" rel="noopener">اعرف اتجاه القبلة</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="daily-dhikr">
+    <div class="section-title">
+      <h2>🤍 ذكر يطمئن قلبك</h2>
+      <p>تذكّر الله في يومك</p>
+    </div>
+    <div class="feature">
+      <div class="dhikr" id="dhikrText">
+        سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
+      </div>
+      <p id="dhikrNumber">الذكر 1 من 4</p>
+      <button class="action" onclick="nextDhikr()">الذكر التالي ←</button>
+    </div>
+  </section>
+
+  <section id="tasbih">
+    <div class="section-title">
+      <h2>📿 المسبحة الإلكترونية</h2>
+      <p>سبّح واذكر الله بكل سهولة</p>
+    </div>
+    <div class="feature">
+      <h3>سُبْحَانَ اللَّهِ</h3>
+      <p>عدد التسبيحات</p>
+      <button class="counter" id="count" onclick="increment()">0</button>
+      <div>
+        <button class="action" onclick="increment()">سبّح 🤍</button>
+        <button class="action secondary" onclick="resetCount()">إعادة من البداية</button>
+      </div>
+      <p class="note">اضغط على الدائرة أو زر التسبيح لزيادة العدد.</p>
+    </div>
+  </section>
+
+  <section id="assistant">
+    <div class="section-title">
+      <h2>✨ المساعد الإسلامي</h2>
+      <p>مساحة للتعلّم وفهم الموضوعات الإسلامية</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🤍</div>
+      <h3>اسأل عن الإسلام</h3>
+      <p>
+        تعلّم عن الصلاة والصيام والوضوء ومعاني الآيات
+        من خلال مصادر إسلامية موثوقة.
+      </p>
+      <a class="primary" href="https://quran.com/" target="_blank" rel="noopener">
+        ابدأ التعلّم
+      </a>
+      <p class="note">
+        هذه النسخة واجهة أولية؛ ربط المحادثة بذكاء اصطناعي حقيقي
+        يحتاج إلى خدمة آمنة مخصّصة. ولا تُغني الإجابات عن سؤال أهل العلم في الفتاوى.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>🌟 رسالة لك</h2>
+    </div>
+    <div class="feature">
+      <p style="font-size:19px;color:#a77b29">
+        ﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾
+      </p>
+      <p class="note">سورة الرعد، الآية 28</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>نور الإسلام ✨</strong>
+  <p>نورٌ للروح، وطمأنينةٌ للقلب.</p>
+  <p>نسأل الله أن يجعل هذا العمل نافعاً للجميع 🤍</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("show");
+}
+
+let total = 0;
+function increment() {
+  total++;
+  document.getElementById("count").textContent = total;
+}
+function resetCount() {
+  total = 0;
+  document.getElementById("count").textContent = total;
+}
+
+const adhkar = [
+  "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+  "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",
+  "لَا إِلَهَ إِلَّا اللَّهُ",
+  "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ"
+];
+let currentDhikr = 0;
+
+function nextDhikr() {
+  currentDhikr = (currentDhikr + 1) % adhkar.length;
+  document.getElementById("dhikrText").textContent = adhkar[currentDhikr];
+  document.getElementById("dhikrNumber").textContent =
+    "الذكر " + (currentDhikr + 1) + " من " + adhkar.length;
+}
+</script>
+
+</body>
+</html>
