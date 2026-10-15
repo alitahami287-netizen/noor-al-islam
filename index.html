@@ -90,35 +90,39 @@ html[dir="ltr"] .hero{text-align:center}
 html[dir="ltr"] .notice{border-right:0;border-left:3px solid var(--gold)}
 @media(max-width:480px){.hero{padding:26px 14px;min-height:270px}.hero-art{width:60%;opacity:.34}.lang-switch{position:static;margin-bottom:10px}.hero-copy{width:100%}}
 
-/* Premium Noor refresh */
-:root{--gold:#e2c36a;--gold-soft:#f5e6b0;--panel:#11110f;--line:rgba(226,195,106,.28)}
-body{background-color:#070807}
-section{scroll-margin-top:22px}
-section h2{letter-spacing:.2px;text-shadow:0 0 22px rgba(226,195,106,.12)}
-.card{border:1px solid rgba(226,195,106,.22);background:linear-gradient(145deg,rgba(24,23,18,.96),rgba(10,11,10,.96));border-radius:20px;box-shadow:0 16px 42px rgba(0,0,0,.22);transition:transform .22s ease,border-color .22s ease}
-.card:hover{border-color:rgba(226,195,106,.48)}
-.btn,button{transition:transform .18s ease,box-shadow .18s ease}
-.btn:hover,button:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(226,195,106,.12)}
-#noor-assistant .assistant-shell{overflow:hidden;border:1px solid rgba(226,195,106,.38);border-radius:24px;background:radial-gradient(ellipse at top right,rgba(226,195,106,.11),transparent 48%),linear-gradient(145deg,#151510,#090a09);box-shadow:0 22px 60px rgba(0,0,0,.32)}
-#noor-assistant .assistant-head{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--line)}
-#noor-assistant .assistant-mark{width:48px;height:48px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--gold);border-radius:16px;color:var(--gold-soft);font-size:24px;background:rgba(226,195,106,.08)}
-#noor-assistant .assistant-head h3{margin:0;color:var(--gold-soft);font-size:20px}
-#noor-assistant .assistant-head p{margin:2px 0 0;color:var(--muted);font-size:13px}
-#noor-assistant .assistant-beta{margin-inline-start:auto;border:1px solid rgba(226,195,106,.35);border-radius:999px;padding:4px 9px;color:var(--gold-soft);font-size:11px;white-space:nowrap}
-#noor-assistant .assistant-body{padding:20px}
-#noor-assistant .assistant-note{padding:12px 14px;border-radius:12px;background:rgba(226,195,106,.07);border:1px solid rgba(226,195,106,.15);color:#d9d0b9;font-size:13px}
-#noor-assistant .assistant-prompts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
-#noor-assistant .assistant-prompts button{background:#17160f;border:1px solid rgba(226,195,106,.32);border-radius:999px;padding:8px 12px;color:#f1e4bc;font:inherit;font-size:13px;cursor:pointer}
-#noor-assistant .assistant-chat{display:flex;flex-direction:column;gap:10px;max-height:260px;overflow:auto;margin:14px 0}
-#noor-assistant .assistant-message{max-width:92%;padding:11px 14px;border-radius:15px;white-space:pre-wrap;line-height:1.8;font-size:14px}
-#noor-assistant .assistant-message.bot{align-self:flex-start;background:#191912;border:1px solid rgba(226,195,106,.17);border-end-start-radius:4px}
-#noor-assistant .assistant-message.user{align-self:flex-end;background:rgba(226,195,106,.13);border:1px solid rgba(226,195,106,.28);border-end-end-radius:4px}
-#noor-assistant .assistant-form{display:flex;gap:9px}
-#noor-assistant .assistant-form input{min-width:0;flex:1;border:1px solid rgba(226,195,106,.35);border-radius:14px;padding:13px 14px;background:#080908;color:#fff;font:inherit}
-#noor-assistant .assistant-form input:focus{outline:2px solid rgba(226,195,106,.35);outline-offset:1px}
-#noor-assistant .assistant-form button{border:0;border-radius:14px;padding:0 18px;background:linear-gradient(135deg,#f0d98f,#b18b2f);color:#17130a;font:inherit;font-weight:bold;cursor:pointer}
-@media(max-width:520px){#noor-assistant .assistant-head{padding:16px}#noor-assistant .assistant-body{padding:14px}#noor-assistant .assistant-beta{font-size:10px}#noor-assistant .assistant-form button{padding:0 13px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Noor AI app panel — scoped to the assistant only */
+#noor-assistant{max-width:100%;scroll-margin-top:20px}
+#noor-assistant .assistant-app{max-width:860px;margin:0 auto;overflow:hidden;border:1px solid rgba(212,175,55,.42);border-radius:22px;background:#0b0c0b;box-shadow:0 20px 55px rgba(0,0,0,.32)}
+#noor-assistant .assistant-topbar{display:flex;align-items:center;gap:12px;padding:17px 20px;background:linear-gradient(110deg,#17150e,#0d0e0c);border-bottom:1px solid rgba(212,175,55,.25)}
+#noor-assistant .assistant-avatar{width:46px;height:46px;flex:0 0 46px;display:grid;place-items:center;border:1px solid #d4af37;border-radius:15px;background:#211c0e;color:#f0d77e;font-size:25px}
+#noor-assistant .assistant-brand{min-width:0;flex:1}
+#noor-assistant .assistant-brand h3{margin:0;color:#f0d77e;font-size:18px;line-height:1.5}
+#noor-assistant .assistant-brand p{margin:2px 0 0;color:#bdb7a6;font-size:12px;line-height:1.6}
+#noor-assistant .assistant-state{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(212,175,55,.3);border-radius:999px;padding:5px 9px;color:#e7d28e;font-size:11px;white-space:nowrap}
+#noor-assistant .assistant-state:before{content:"";width:6px;height:6px;border-radius:50%;background:#d4af37;display:inline-block}
+#noor-assistant .assistant-workspace{padding:22px;background:radial-gradient(ellipse at 50% 0,rgba(212,175,55,.06),transparent 48%)}
+#noor-assistant .assistant-welcome{text-align:center;padding:18px 10px 14px}
+#noor-assistant .assistant-welcome-mark{width:62px;height:62px;display:grid;place-items:center;margin:0 auto 12px;border:1px solid rgba(212,175,55,.55);border-radius:20px;background:rgba(212,175,55,.08);color:#f0d77e;font-size:30px;box-shadow:inset 0 0 24px rgba(212,175,55,.04)}
+#noor-assistant .assistant-welcome h3{margin:0 0 7px;color:#f5e8bc;font-size:21px}
+#noor-assistant .assistant-welcome p{max-width:540px;margin:0 auto;color:#c9c3b2;font-size:14px}
+#noor-assistant .assistant-disclaimer{margin:16px auto 0;max-width:680px;padding:10px 13px;border:1px solid rgba(212,175,55,.2);border-radius:12px;background:rgba(212,175,55,.045);color:#c9c3b2;font-size:12px;text-align:start}
+#noor-assistant .assistant-prompts-title{margin:20px 0 9px;color:#e8d79e;font-size:13px;font-weight:bold}
+#noor-assistant .assistant-prompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+#noor-assistant .assistant-prompts button{min-height:66px;padding:11px;border:1px solid #37301d;border-radius:13px;background:#11120f;color:#f1e7c6;text-align:start;font:inherit;font-size:13px;cursor:pointer;transition:border-color .18s ease,background .18s ease}
+#noor-assistant .assistant-prompts button:hover{border-color:#b99a43;background:#19170f}
+#noor-assistant .assistant-chat{display:flex;flex-direction:column;gap:12px;max-height:330px;overflow-y:auto;margin:18px 0 14px;padding:4px 2px;scroll-behavior:smooth}
+#noor-assistant .assistant-message{max-width:min(92%,620px);padding:12px 15px;border-radius:16px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.85;font-size:14px}
+#noor-assistant .assistant-message.bot{align-self:flex-start;background:#151611;border:1px solid #35301e;border-end-start-radius:5px;color:#f2eddf}
+#noor-assistant .assistant-message.user{align-self:flex-end;background:#282211;border:1px solid rgba(212,175,55,.45);border-end-end-radius:5px;color:#fff4d1}
+#noor-assistant .assistant-form{display:flex;gap:9px;padding:9px;border:1px solid #4a3c1b;border-radius:16px;background:#080908}
+#noor-assistant .assistant-form input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:#fff9e8;padding:9px 8px;font:inherit;font-size:14px}
+#noor-assistant .assistant-form input::placeholder{color:#8f8978}
+#noor-assistant .assistant-form button{flex:0 0 auto;min-width:76px;border:1px solid #e0c56d;border-radius:11px;padding:9px 15px;background:linear-gradient(135deg,#e7cf7a,#b18b2f);color:#151208;font:inherit;font-size:14px;font-weight:bold;cursor:pointer}
+#noor-assistant .assistant-form button:focus-visible,#noor-assistant .assistant-prompts button:focus-visible{outline:2px solid #f5e6b0;outline-offset:3px}
+#noor-assistant .assistant-footnote{margin:10px 2px 0;color:#928b79;font-size:11px;text-align:center}
+@media(max-width:560px){#noor-assistant .assistant-topbar{padding:13px;gap:10px}#noor-assistant .assistant-avatar{width:42px;height:42px;flex-basis:42px}#noor-assistant .assistant-brand h3{font-size:16px}#noor-assistant .assistant-state{font-size:10px;padding:4px 7px}#noor-assistant .assistant-workspace{padding:13px}#noor-assistant .assistant-welcome{padding-top:14px}#noor-assistant .assistant-welcome h3{font-size:19px}#noor-assistant .assistant-prompts{grid-template-columns:1fr}#noor-assistant .assistant-prompts button{min-height:48px}#noor-assistant .assistant-message{max-width:96%}#noor-assistant .assistant-form button{min-width:64px;padding-inline:11px}}
+@media(prefers-reduced-motion:reduce){#noor-assistant .assistant-chat{scroll-behavior:auto}#noor-assistant .assistant-prompts button{transition:none}}
 </style>
 </head>
 <body>
@@ -144,26 +148,36 @@ section h2{letter-spacing:.2px;text-shadow:0 0 22px rgba(226,195,106,.12)}
 
   <section id="noor-assistant" aria-labelledby="noor-assistant-title">
     <h2>✧ اسأل مساعد نور الإسلامي</h2>
-    <div class="assistant-shell">
-      <div class="assistant-head">
-        <div class="assistant-mark" aria-hidden="true">۞</div>
-        <div><h3 id="noor-assistant-title" data-ar="مساعد نور الإسلامي" data-en="Noor Islamic Assistant">مساعد نور الإسلامي</h3><p data-ar="مساحة للأسئلة والتعلّم بهدوء" data-en="A calm space for questions and learning">مساحة للأسئلة والتعلّم بهدوء</p></div>
-        <span class="assistant-beta" data-ar="نسخة تجريبية" data-en="Preview">نسخة تجريبية</span>
+    <div class="assistant-app">
+      <div class="assistant-topbar">
+        <div class="assistant-avatar" aria-hidden="true">۞</div>
+        <div class="assistant-brand">
+          <h3 id="noor-assistant-title" data-ar="نور AI" data-en="Noor AI">نور AI</h3>
+          <p data-ar="مساعدك للتعلّم والمعرفة الإسلامية" data-en="Your assistant for Islamic learning and knowledge">مساعدك للتعلّم والمعرفة الإسلامية</p>
+        </div>
+        <span class="assistant-state" data-ar="نسخة تجريبية" data-en="Preview version">نسخة تجريبية</span>
       </div>
-      <div class="assistant-body">
-        <div class="assistant-note" data-ar="هذه واجهة أولية وليست ذكاءً اصطناعيًا متصلًا بعد. الإجابات التجريبية محدودة؛ سنحتاج إلى ربط خدمة ذكاء اصطناعي آمنة قبل الاعتماد عليها للأسئلة الدينية." data-en="This is an initial interface and is not connected to an AI service yet. Preview replies are limited; a secure AI connection is needed before relying on it for religious questions.">هذه واجهة أولية وليست ذكاءً اصطناعيًا متصلًا بعد. الإجابات التجريبية محدودة؛ سنحتاج إلى ربط خدمة ذكاء اصطناعي آمنة قبل الاعتماد عليها للأسئلة الدينية.</div>
+      <div class="assistant-workspace">
+        <div class="assistant-welcome">
+          <div class="assistant-welcome-mark" aria-hidden="true">✧</div>
+          <h3 data-ar="السلام عليكم، حيّاك الله" data-en="Assalamu alaikum, welcome">السلام عليكم، حيّاك الله</h3>
+          <p data-ar="اسأل عن القرآن الكريم، والأذكار، والعبادات، أو اكتب سؤالك في الأسفل." data-en="Ask about the Qur’an, adhkar, acts of worship, or type your question below.">اسأل عن القرآن الكريم، والأذكار، والعبادات، أو اكتب سؤالك في الأسفل.</p>
+        </div>
+        <div class="assistant-disclaimer" data-ar="تنبيه: المساعد غير متصل بذكاء اصطناعي حقيقي حتى الآن. إجاباته الحالية تجريبية ومحدودة، ولا تُعدّ فتوى شرعية." data-en="Note: this assistant is not connected to a real AI service yet. Current replies are limited previews, not religious rulings.">تنبيه: المساعد غير متصل بذكاء اصطناعي حقيقي حتى الآن. إجاباته الحالية تجريبية ومحدودة، ولا تُعدّ فتوى شرعية.</div>
+        <div class="assistant-prompts-title" data-ar="جرّب تسأل عن:" data-en="Try asking about:">جرّب تسأل عن:</div>
         <div class="assistant-prompts" aria-label="أسئلة مقترحة">
-          <button type="button" data-question="كيف أبدأ يومي بالأذكار؟">أذكار الصباح</button>
-          <button type="button" data-question="ما فضل قراءة القرآن؟">فضل القرآن</button>
-          <button type="button" data-question="كيف أحافظ على الصلاة؟">المحافظة على الصلاة</button>
+          <button type="button" data-question="كيف أبدأ يومي بالأذكار؟" data-ar="☀️ أذكار الصباح" data-en="☀️ Morning adhkar">☀️ أذكار الصباح</button>
+          <button type="button" data-question="ما فضل قراءة القرآن؟" data-ar="📖 فضل القرآن الكريم" data-en="📖 Virtues of the Qur’an">📖 فضل القرآن الكريم</button>
+          <button type="button" data-question="كيف أحافظ على الصلاة؟" data-ar="🕌 المحافظة على الصلاة" data-en="🕌 Keeping up with prayer">🕌 المحافظة على الصلاة</button>
         </div>
         <div id="noorAssistantChat" class="assistant-chat" aria-live="polite">
-          <div class="assistant-message bot" data-ar="أهلًا بك! اختر سؤالًا مقترحًا أو اكتب سؤالك. تذكّر أن هذه النسخة تجريبية وليست فتوى شرعية." data-en="Welcome! Choose a suggested question or type yours. This preview is not a religious ruling.">أهلًا بك! اختر سؤالًا مقترحًا أو اكتب سؤالك. تذكّر أن هذه النسخة تجريبية وليست فتوى شرعية.</div>
+          <div class="assistant-message bot" data-ar="أهلًا بك في نور AI. اكتب سؤالك وسأحاول مساعدتك ضمن المعلومات التجريبية المتاحة." data-en="Welcome to Noor AI. Type your question and I’ll try to help using the limited preview information available.">أهلًا بك في نور AI. اكتب سؤالك وسأحاول مساعدتك ضمن المعلومات التجريبية المتاحة.</div>
         </div>
         <form id="noorAssistantForm" class="assistant-form">
           <input id="noorAssistantInput" type="text" maxlength="500" autocomplete="off" aria-label="اكتب سؤالك" placeholder="اكتب سؤالك هنا..." data-ar-placeholder="اكتب سؤالك هنا..." data-en-placeholder="Type your question...">
-          <button type="submit" data-ar="إرسال" data-en="Send">إرسال</button>
+          <button type="submit" data-ar="إرسال ↑" data-en="Send ↑">إرسال ↑</button>
         </form>
+        <p class="assistant-footnote" data-ar="نور AI · تعلّم بهدوء، وتحقّق من المصادر الموثوقة" data-en="Noor AI · Learn calmly and verify trusted sources">نور AI · تعلّم بهدوء، وتحقّق من المصادر الموثوقة</p>
       </div>
     </div>
   </section>
@@ -714,7 +728,7 @@ if (!sessionStorage.getItem('noor-greeting-seen')) {
 }
 
 
-/* Preview assistant: honest local guidance until a secure AI endpoint is configured. */
+/* Noor AI preview interactions; all behavior remains scoped to the assistant. */
 (function(){
   const form=document.getElementById('noorAssistantForm');
   const input=document.getElementById('noorAssistantInput');
@@ -729,7 +743,9 @@ if (!sessionStorage.getItem('noor-greeting-seen')) {
   function reply(q){const lower=q.toLowerCase();const item=answers.find(a=>a.keys.some(k=>lower.includes(k.toLowerCase())));const en=document.documentElement.lang==='en';if(item)return en?item.en:item.ar;return en?'This preview cannot provide a reliable answer to that question yet because it is not connected to an AI service. Please consult a trusted scholar for a religious ruling.':'هذه النسخة التجريبية لا تستطيع تقديم جواب موثوق لهذا السؤال لأنها غير متصلة بخدمة ذكاء اصطناعي بعد. للحكم الشرعي، يُرجى سؤال عالم موثوق.';}
   form.addEventListener('submit',function(e){e.preventDefault();const q=input.value.trim();if(!q)return;add(q,'user');input.value='';window.setTimeout(()=>add(reply(q),'bot'),220);});
   document.querySelectorAll('#noor-assistant [data-question]').forEach(b=>b.addEventListener('click',()=>{input.value=b.dataset.question;form.requestSubmit();}));
-  document.querySelectorAll('[data-ar-placeholder][data-en-placeholder]').forEach(el=>{const sync=()=>el.placeholder=document.documentElement.lang==='en'?el.dataset.enPlaceholder:el.dataset.arPlaceholder;sync();document.getElementById('languageToggle')?.addEventListener('click',sync);});
+  function syncAssistantLanguage(){document.querySelectorAll('#noor-assistant [data-ar-placeholder][data-en-placeholder]').forEach(el=>{el.placeholder=document.documentElement.lang==='en'?el.dataset.enPlaceholder:el.dataset.arPlaceholder;});}
+  syncAssistantLanguage();
+  document.getElementById('languageToggle')?.addEventListener('click',syncAssistantLanguage);
 })();
 
 </script>
