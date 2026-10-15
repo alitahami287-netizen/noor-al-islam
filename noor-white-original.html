@@ -153,24 +153,27 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
   <div id="favoritesBox" class="panel" style="display:none;margin-top:13px"><div class="section-head"><div><h2>☆ آياتي المحفوظة</h2><p>تُحفظ محلياً في متصفح هذا الجهاز.</p></div><button class="btn" id="closeFavorites">إغلاق</button></div><div id="favoritesList" class="loading">لا توجد آيات محفوظة بعد.</div></div>
  </section>
  <section class="section" id="sunnaBooks">
-  <div class="section-head"><div><h2>📚 مكتبة كتب أهل السنة</h2><p>كتب معروفة في الحديث والتفسير والفقه والعقيدة، بروابط تساعدك على القراءة والبحث.</p></div><span class="section-tag">المكتبة الإسلامية</span></div>
+  <div class="section-head"><div><h2>📚 مكتبة كتب أهل السنة</h2><p>كتب أهل السنة في مكان واحد؛ اقرأ المحتوى المتاح هنا دون مغادرة الموقع.</p></div><span class="section-tag">المكتبة الإسلامية</span></div>
   <div class="panel" style="margin-bottom:14px">
    <div class="field-wrap"><label class="label" for="bookSearch">🔎 ابحث عن كتاب أو مؤلف</label><input class="field" id="bookSearch" placeholder="مثال: صحيح البخاري، ابن كثير، النووي" autocomplete="off"></div>
-   <p class="subtext">اكتب اسم الكتاب لتصفية البطاقات، أو افتح مكتبة خارجية للبحث عن النسخة الكاملة.</p>
+   <p class="subtext">اكتب اسم الكتاب لتصفية البطاقات. القراءة المتاحة تُعرض هنا داخل نور الإسلام، دون الانتقال إلى موقع آخر. القراءة المتاحة تُعرض هنا داخل نور الإسلام، دون الانتقال إلى موقع آخر.</p>
+  </div>
+  <div class="panel" id="bookReader" style="display:none;margin:14px 0" aria-live="polite">
+   <div class="section-head"><div><h3 id="bookReaderTitle">قارئ الكتب</h3><p id="bookReaderStatus">القراءة داخل نور الإسلام</p></div><button class="btn" id="closeBookReader" type="button">إغلاق ✕</button></div>
+   <div id="bookReaderContent"></div><div class="row" style="margin-top:12px"><button class="btn" id="bookPrev" type="button">السابق</button><button class="btn gold" id="bookNext" type="button">التالي</button></div>
   </div>
   <div class="grid" id="sunnaBookGrid">
-   <article class="tile" data-book="صحيح البخاري محمد بن اسماعيل البخاري حديث السنة"><div class="tile-icon">📖</div><h3>صحيح البخاري</h3><p>من أشهر كتب الحديث عند أهل السنة.</p><a class="btn" href="https://sunnah.com/bukhari" target="_blank" rel="noopener noreferrer">اقرأ الأحاديث</a><a class="btn" style="margin-top:7px" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن نسخة كتاب</a></article>
-   <article class="tile" data-book="صحيح مسلم مسلم بن الحجاج حديث السنة"><div class="tile-icon">📘</div><h3>صحيح مسلم</h3><p>كتاب حديث للإمام مسلم بن الحجاج.</p><a class="btn" href="https://sunnah.com/muslim" target="_blank" rel="noopener noreferrer">اقرأ الأحاديث</a><a class="btn" style="margin-top:7px" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن نسخة كتاب</a></article>
-   <article class="tile" data-book="رياض الصالحين يحيى بن شرف النووي أخلاق أذكار"><div class="tile-icon">🌿</div><h3>رياض الصالحين</h3><p>أحاديث في العبادات والأخلاق والآداب، جمعها الإمام النووي.</p><a class="btn" href="https://sunnah.com/riyadussalihin" target="_blank" rel="noopener noreferrer">اقرأ الكتاب</a><a class="btn" style="margin-top:7px" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن نسخة كتاب</a></article>
-   <article class="tile" data-book="الأربعون النووية النووي أحاديث"><div class="tile-icon">📗</div><h3>الأربعون النووية</h3><p>مجموعة أحاديث مشهورة في أصول الدين والآداب.</p><a class="btn" href="https://sunnah.com/nawawi40" target="_blank" rel="noopener noreferrer">اقرأ الأحاديث</a><a class="btn" style="margin-top:7px" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن نسخة كتاب</a></article>
-   <article class="tile" data-book="تفسير ابن كثير إسماعيل بن عمر تفسير القرآن"><div class="tile-icon">📚</div><h3>تفسير ابن كثير</h3><p>تفسير مشهور للقرآن الكريم؛ راجع الآيات وسياقها.</p><a class="btn" href="https://quran.com/" target="_blank" rel="noopener noreferrer">افتح القرآن والتفسير</a><a class="btn" style="margin-top:7px" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن نسخة كتاب</a></article>
-   <article class="tile" data-book="الأذكار الإمام النووي دعاء ذكر"><div class="tile-icon">🤲</div><h3>الأذكار للنووي</h3><p>كتاب يجمع أبواباً من الذكر والدعاء والآداب.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن الكتاب</a></article>
-   <article class="tile" data-book="بلوغ المرام ابن حجر العسقلاني أحاديث الأحكام فقه"><div class="tile-icon">⚖️</div><h3>بلوغ المرام</h3><p>أحاديث في أبواب الأحكام الفقهية، جمعها ابن حجر العسقلاني.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن الكتاب</a></article>
-   <article class="tile" data-book="الأدب المفرد محمد بن إسماعيل البخاري أخلاق"><div class="tile-icon">🌸</div><h3>الأدب المفرد</h3><p>آثار وأحاديث في الآداب والأخلاق.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن الكتاب</a></article>
-   <article class="tile" data-book="العقيدة الواسطية ابن تيمية عقيدة"><div class="tile-icon">🕌</div><h3>العقيدة الواسطية</h3><p>متن معروف في مسائل العقيدة عند أهل السنة.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن الكتاب</a></article>
-   <article class="tile" data-book="زاد المستقنع فقه حنبلي"><div class="tile-icon">📜</div><h3>زاد المستقنع</h3><p>متن فقهي مشهور في الفقه الحنبلي.</p><a class="btn" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">ابحث عن الكتاب</a></article>
+   <article class="tile" data-book="صحيح البخاري محمد بن اسماعيل البخاري حديث السنة"><div class="tile-icon">📖</div><h3>صحيح البخاري</h3><p>من أشهر كتب الحديث عند أهل السنة.</p><button class="btn gold open-book" type="button" data-book-id="bukhari" data-book-title="صحيح البخاري">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="صحيح مسلم مسلم بن الحجاج حديث السنة"><div class="tile-icon">📘</div><h3>صحيح مسلم</h3><p>كتاب حديث للإمام مسلم بن الحجاج.</p><button class="btn gold open-book" type="button" data-book-id="muslim" data-book-title="صحيح مسلم">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="رياض الصالحين يحيى بن شرف النووي أخلاق أذكار"><div class="tile-icon">🌿</div><h3>رياض الصالحين</h3><p>أحاديث في العبادات والأخلاق والآداب، جمعها الإمام النووي.</p><button class="btn gold open-book" type="button" data-book-id="riyadussalihin" data-book-title="رياض الصالحين">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="الأربعون النووية النووي أحاديث"><div class="tile-icon">📗</div><h3>الأربعون النووية</h3><p>مجموعة أحاديث مشهورة في أصول الدين والآداب.</p><button class="btn gold open-book" type="button" data-book-id="nawawi40" data-book-title="الأربعون النووية">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="تفسير ابن كثير إسماعيل بن عمر تفسير القرآن"><div class="tile-icon">📚</div><h3>تفسير ابن كثير</h3><p>تفسير مشهور للقرآن الكريم؛ راجع الآيات وسياقها.</p><button class="btn gold open-book" type="button" data-book-id="tafsir" data-book-title="تفسير ابن كثير">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="الأذكار الإمام النووي دعاء ذكر"><div class="tile-icon">🤲</div><h3>الأذكار للنووي</h3><p>كتاب يجمع أبواباً من الذكر والدعاء والآداب.</p><button class="btn gold open-book" type="button" data-book-id="adhkar" data-book-title="الأذكار للنووي">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="بلوغ المرام ابن حجر العسقلاني أحاديث الأحكام فقه"><div class="tile-icon">⚖️</div><h3>بلوغ المرام</h3><p>أحاديث في أبواب الأحكام الفقهية، جمعها ابن حجر العسقلاني.</p><button class="btn gold open-book" type="button" data-book-id="bulugh" data-book-title="بلوغ المرام">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="الأدب المفرد محمد بن إسماعيل البخاري أخلاق"><div class="tile-icon">🌸</div><h3>الأدب المفرد</h3><p>آثار وأحاديث في الآداب والأخلاق.</p><button class="btn gold open-book" type="button" data-book-id="adab" data-book-title="الأدب المفرد">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="العقيدة الواسطية ابن تيمية عقيدة"><div class="tile-icon">🕌</div><h3>العقيدة الواسطية</h3><p>متن معروف في مسائل العقيدة عند أهل السنة.</p><button class="btn gold open-book" type="button" data-book-id="aqida" data-book-title="العقيدة الواسطية">اقرأ داخل الموقع</button></article>
+   <article class="tile" data-book="زاد المستقنع فقه حنبلي"><div class="tile-icon">📜</div><h3>زاد المستقنع</h3><p>متن فقهي مشهور في الفقه الحنبلي.</p><button class="btn gold open-book" type="button" data-book-id="fiqh" data-book-title="زاد المستقنع">اقرأ داخل الموقع</button></article>
   </div>
-  <div class="panel" style="margin-top:14px"><h3 style="margin-top:0;color:#906b2a">🏛️ مكتبات للبحث والقراءة</h3><p>استخدم المكتبات التالية للوصول إلى كتب أخرى أو البحث عن نسخ متاحة للقراءة والتنزيل.</p><div class="row"><a class="btn gold" href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer">المكتبة الوقفية</a><a class="btn" href="https://shamela.ws/" target="_blank" rel="noopener noreferrer">المكتبة الشاملة</a></div><p class="subtext" style="margin-top:10px">بعض الروابط تفتح مصادر خارجية؛ قد تحتاج إلى الإنترنت، وتوفّر النسخ أو التنزيل يعتمد على الموقع وحقوق النشر.</p></div>
   <p id="bookSearchEmpty" class="subtext" style="display:none">ما لقينا كتاب بهذا الاسم. جرّب كلمة ثانية.</p>
  </section>
  <section class="section"><div class="panel"><div class="verse">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div><div class="subtext">سورة الرعد — الآية ٢٨</div></div></section>
@@ -377,6 +380,31 @@ $('markToday').onclick=()=>{localStorage.setItem('noorWirdDone',new Date().toDat
 $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollIntoView({behavior:'smooth',block:'center'})};
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
 loadSurah();
+/* قارئ كتب أهل السنة داخل الموقع */
+(function(){
+ const $id=id=>document.getElementById(id), reader=$id('bookReader'),titleEl=$id('bookReaderTitle'),statusEl=$id('bookReaderStatus'),contentEl=$id('bookReaderContent');
+ if(!reader||!contentEl)return;
+ const catalog={
+ bukhari:{title:'صحيح البخاري',api:'bukhari'},muslim:{title:'صحيح مسلم',api:'muslim'},riyadussalihin:{title:'رياض الصالحين',api:'riyadussalihin'},nawawi40:{title:'الأربعون النووية',api:'nawawi40'},
+ tafsir:{title:'تفسير ابن كثير'},adhkar:{title:'الأذكار للنووي'},bulugh:{title:'بلوغ المرام'},adab:{title:'الأدب المفرد'},aqida:{title:'العقيدة الواسطية'},fiqh:{title:'زاد المستقنع'}
+ };
+ let entries=[],pos=0;
+ const esc=s=>String(s??'').replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+ function render(){const h=entries[pos]||{};const text=h.arab||h.text||h.hadith||h.body||'';const no=h.number||h.hadithnumber||h.id||pos+1;
+ contentEl.innerHTML='<article class="list-item"><strong>الحديث رقم '+esc(no)+'</strong><p style="white-space:pre-wrap;line-height:2;font-size:1.08rem">'+esc(text)+'</p></article>';
+ statusEl.textContent='الحديث '+(pos+1)+' من '+entries.length;$id('bookPrev').disabled=pos<=0;$id('bookNext').disabled=pos>=entries.length-1;}
+ document.addEventListener('click',async e=>{const b=e.target.closest('.open-book');if(!b)return;const book=catalog[b.dataset.bookId];if(!book)return;
+ reader.style.display='block';titleEl.textContent=book.title;reader.scrollIntoView({behavior:'smooth',block:'start'});
+ if(!book.api){statusEl.textContent='القراءة الداخلية قيد الإكمال';contentEl.innerHTML='<p class="subtext">هذا الكتاب لم يُضف نصه الكامل إلى الموقع بعد. لن نفتح موقعاً خارجياً؛ سنعرضه هنا بعد تجهيز نص موثوق ومسموح بإعادة نشره.</p>';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;return;}
+ contentEl.innerHTML='<p class="loading">جارٍ تحميل الأحاديث للعرض داخل الموقع…</p>';statusEl.textContent='يرجى الانتظار';
+ try{const res=await fetch('https://api.hadith.gading.dev/books/'+encodeURIComponent(book.api)+'?range=1-20');if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();entries=(data.data&&data.data.hadiths)||[];pos=0;if(!entries.length)throw Error('empty');render();statusEl.textContent='الأحاديث معروضة داخل نور الإسلام؛ يلزم اتصال بالإنترنت.';}
+ catch(err){entries=[];contentEl.innerHTML='<p class="subtext">تعذّر تحميل النص حالياً. تحقق من الإنترنت وحاول مجدداً. لم نفتح أي موقع خارجي.</p>';statusEl.textContent='تعذّر التحميل';$id('bookPrev').disabled=true;$id('bookNext').disabled=true;}
+ });
+ $id('closeBookReader').addEventListener('click',()=>reader.style.display='none');
+ $id('bookPrev').addEventListener('click',()=>{if(pos>0){pos--;render();}});
+ $id('bookNext').addEventListener('click',()=>{if(pos<entries.length-1){pos++;render();}});
+})();
+
 setupSeparatePages();
 </script>
 </body>
