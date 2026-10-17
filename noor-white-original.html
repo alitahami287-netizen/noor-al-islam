@@ -88,22 +88,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
    <div class="audio-bar"><div id="audioStatus" style="font-size:12px;color:#567587;margin-bottom:6px">جارٍ تجهيز التلاوة…</div><audio id="quranAudio" controls preload="metadata"></audio></div>
    <div class="row" style="margin-top:9px"><button class="btn" id="downloadSurah" type="button">⬇ تحميل التلاوة</button><span id="downloadNote" class="subtext"></span></div>
   </div>
- </section><section class="section" id="morePages">
-  <div class="section-head"><div><h2>☰ أقسام نور الإسلام</h2><p>اختَر القسم الذي تريد فتحه. كل قسم يظهر بصفحة مستقلة.</p></div><span class="section-tag">قائمة الأقسام</span></div>
-  <div class="page-menu-grid">
-   <a class="page-menu-card" href="#quran"><span>📖</span><strong>القرآن الكريم</strong><small>قراءة الآيات والسور</small></a>
-   <a class="page-menu-card" href="#listen"><span>🎙️</span><strong>تلاوة سورة</strong><small>اختيار القارئ والسورة</small></a>
-   <a class="page-menu-card" href="#adhkar"><span>🤲</span><strong>الأذكار</strong><small>الصباح والمساء وبقية الأذكار</small></a>
-   <a class="page-menu-card" href="#tasbih"><span>📿</span><strong>المسبحة الإلكترونية</strong><small>عداد التسبيح</small></a>
-   <a class="page-menu-card" href="#prayer"><span>🕌</span><strong>الصلاة والقبلة</strong><small>المواقيت والقبلة</small></a>
-   <a class="page-menu-card" href="#wuduPage"><span>💧</span><strong>الوضوء</strong><small>خطوات الوضوء</small></a>
-   <a class="page-menu-card" href="#halalPage"><span>🍃</span><strong>الحلال والحرام</strong><small>معلومات للتعلّم</small></a>
-   <a class="page-menu-card" href="#knowledge"><span>📚</span><strong>التعلّم</strong><small>معلومات إسلامية</small></a>
-   <a class="page-menu-card" href="#sunnaBooks"><span>📜</span><strong>المكتبة الإسلامية</strong><small>كتب ومصادر</small></a>
-   <a class="page-menu-card" href="#favoritesPage"><span>☆</span><strong>المحفوظات</strong><small>الآيات المحفوظة</small></a>
-  </div>
- </section>
- <section class="section" id="adhkar">
+ </section><section class="section" id="adhkar">
   <div class="section-head"><div><h2>🤲 الأذكار اليومية</h2><p>أذكار مختارة مع العدّ والتقدّم بين الأذكار.</p></div><span class="section-tag">ذكر وطمأنينة</span></div>
   <div class="panel">
    <div class="pills" id="dhikrTabs"><button class="pill active" data-kind="morning">الصباح</button><button class="pill" data-kind="evening">المساء</button><button class="pill" data-kind="after">بعد الصلاة</button><button class="pill" data-kind="general">أذكار متنوعة</button><button class="pill" data-kind="sleep">قبل النوم</button><button class="pill" data-kind="beforePrayer">قبل الصلاة</button><button class="pill" data-kind="afterAdhan">بعد الأذان</button><button class="pill" data-kind="beforeAdhan">قبل الأذان</button><button class="pill" data-kind="toilet">دخول الخلاء والخروج منه</button></div>
@@ -195,7 +180,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
  <section class="section"><div class="panel"><div class="verse">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div><div class="subtext">سورة الرعد — الآية ٢٨</div></div></section>
 </main>
 <footer><strong>۞ نور الإسلام</strong><p>نورٌ للروح، وطمأنينةٌ للقلب.</p><p>اللهم اجعل هذا العمل نافعاً، وعلّمنا ما ينفعنا.</p><p>محتوى القرآن والتوقيت يحتاج إلى اتصال بالإنترنت؛ راجع المصادر المعتمدة في مسائل الدين.</p></footer>
-<div class="bottom-nav"><a href="#home"><span>⌂</span>الرئيسية</a><a href="#quran"><span>📖</span>القرآن</a><a href="#listen"><span>🎙️</span>تلاوة سورة</a><a href="#adhkar"><span>🤲</span>الأذكار</a><a href="#morePages"><span>☰</span>الأقسام</a></div>
+<div class="bottom-nav"><a href="#home"><span>⌂</span>الرئيسية</a><a href="#quran"><span>📖</span>القرآن</a><a href="#listen"><span>🎙️</span>تلاوة سورة</a><a href="#adhkar"><span>🤲</span>الأذكار</a></div>
 <script>
 const $=id=>document.getElementById(id);
 
@@ -225,7 +210,7 @@ function setupSeparatePages(){
  document.addEventListener('click',function(e){
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=a.getAttribute('href').slice(1);
-  if(id==='morePages'||['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage','morePages'].includes(id)){
+  if(['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(id)){
    e.preventDefault();showPage(id);
   }
  });
@@ -239,7 +224,7 @@ function setupSeparatePages(){
  const closeLibrary=document.getElementById('closeLibrary');
  if(closeLibrary)closeLibrary.onclick=()=>document.getElementById('libraryBox').style.display='none';
  const initial=location.hash.slice(1);
- showPage(['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage','morePages'].includes(initial)?initial:'home',false);
+ showPage(['home','quran','listen','adhkar','tasbih','prayer','knowledge','sunnaBooks','wuduPage','halalPage','favoritesPage'].includes(initial)?initial:'home',false);
 }
 
 const surahNames=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
