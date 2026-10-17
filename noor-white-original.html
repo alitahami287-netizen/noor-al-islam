@@ -257,7 +257,6 @@ function getDownloadUrl(){if(!selectedRead)return '';currentSurah=+$('audioSurah
 $('downloadSurah').onclick=()=>{if(!selectedRead){$('downloadNote').textContent='اختَر القارئ أولاً.';return}const url=getDownloadUrl();if(!url){$('downloadNote').textContent='رابط هذه السورة غير متاح.';return}const a=document.createElement('a');a.href=url;a.download=surahNames[+$('audioSurah').value-1]+'.mp3';a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();$('downloadNote').textContent='إذا بدأ الصوت بدل التنزيل، افتح قائمة المشغّل واختر تحميل أو نزّل الملف من الصفحة التي فُتحت.'};
 $('audioSurah').onchange=()=>{prepareSelectedAudio()};
 loadReaderCatalog();
-updateFullQuranReaderNote();
 
 // مشغّل مستقل للاستماع المتتابع إلى القرآن كاملاً
 const adhkar={
