@@ -41,6 +41,10 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
 .page-menu-card small{font-size:12px;color:var(--muted,#777);margin-top:3px}
 @media(min-width:600px){.page-menu-grid{grid-template-columns:1fr 1fr}}
 [hidden]{display:none!important}
+
+/* بوصلة القبلة */
+#qiblaCompass{isolation:isolate}
+#enableCompass{margin-top:4px}
 </style>
 </head>
 <body>
@@ -103,7 +107,7 @@ body.page-mode nav a[aria-current="page"]{background:#fff2d2;border-color:#d8bb7
  </section>
  <section class="section" id="prayer">
   <div class="section-head"><div><h2>🕌 الصلاة والقبلة</h2><p>احصل على مواقيت الصلاة التقريبية حسب موقعك.</p></div><span class="section-tag">مواقيت اليوم</span></div>
-  <div class="panel"><div class="row"><div class="field-wrap"><label class="label" for="cityInput">المدينة</label><input class="field" id="cityInput" placeholder="مثال: طهران أو بغداد" autocomplete="address-level2"></div><div class="field-wrap"><label class="label" for="countryInput">الدولة</label><input class="field" id="countryInput" placeholder="مثال: إيران أو العراق" autocomplete="country-name"></div></div><div class="row" style="margin-top:10px"><button class="btn gold" id="getCityPrayer">احسب مواقيت مدينتي</button><button class="btn" id="getPrayer">📍 حدّد موقعي بدلاً من ذلك</button></div><div class="row" style="margin-top:10px"><button class="btn gold" id="enableAdhan">🔔 تفعيل الأذان التلقائي</button><span id="prayerLocation" class="subtext">اكتب اسم المدينة والدولة، ثم احسب المواقيت.</span></div><div id="prayerTimes" class="prayer-grid"><div class="prayer"><span>الفجر</span><strong>—:—</strong></div><div class="prayer"><span>الشروق</span><strong>—:—</strong></div><div class="prayer"><span>الظهر</span><strong>—:—</strong></div><div class="prayer"><span>العصر</span><strong>—:—</strong></div><div class="prayer"><span>المغرب</span><strong>—:—</strong></div><div class="prayer"><span>العشاء</span><strong>—:—</strong></div></div><div class="feature" style="margin-top:13px;background:linear-gradient(135deg,#fffefa,#edf7fa);border:1px solid #dcebf0;border-radius:17px;padding:14px"><strong style="color:#85642b">🧭 اتجاه القبلة</strong><div id="qiblaText">اضغط على زر تحديد الموقع لمعرفة اتجاه القبلة التقريبي.</div><div class="subtext">اتجاه القبلة يحتاج إلى إذن الموقع؛ تأكد من إعدادات جهازك.</div></div></div>
+  <div class="panel"><div class="row"><div class="field-wrap"><label class="label" for="cityInput">المدينة</label><input class="field" id="cityInput" placeholder="مثال: طهران أو بغداد" autocomplete="address-level2"></div><div class="field-wrap"><label class="label" for="countryInput">الدولة</label><input class="field" id="countryInput" placeholder="مثال: إيران أو العراق" autocomplete="country-name"></div></div><div class="row" style="margin-top:10px"><button class="btn gold" id="getCityPrayer">احسب مواقيت مدينتي</button><button class="btn" id="getPrayer">📍 حدّد موقعي بدلاً من ذلك</button></div><div class="row" style="margin-top:10px"><button class="btn gold" id="enableAdhan">🔔 تفعيل الأذان التلقائي</button><span id="prayerLocation" class="subtext">اكتب اسم المدينة والدولة، ثم احسب المواقيت.</span></div><div id="prayerTimes" class="prayer-grid"><div class="prayer"><span>الفجر</span><strong>—:—</strong></div><div class="prayer"><span>الشروق</span><strong>—:—</strong></div><div class="prayer"><span>الظهر</span><strong>—:—</strong></div><div class="prayer"><span>العصر</span><strong>—:—</strong></div><div class="prayer"><span>المغرب</span><strong>—:—</strong></div><div class="prayer"><span>العشاء</span><strong>—:—</strong></div></div><div class="feature" style="margin-top:13px;background:linear-gradient(135deg,#fffefa,#edf7fa);border:1px solid #dcebf0;border-radius:17px;padding:14px;text-align:center"><strong style="color:#85642b;display:block">🧭 بوصلة القبلة</strong><div id="qiblaText" style="margin:5px 0 10px">اضغط «حدّد موقعي» لحساب اتجاه القبلة، ثم شغّل البوصلة.</div><div id="qiblaCompass" style="position:relative;width:210px;height:210px;max-width:75vw;max-height:75vw;margin:10px auto 14px;border:5px double #d8bd7b;border-radius:50%;background:radial-gradient(circle,#fffefa 0 56%,#fff5d9 57% 70%,#fffefa 71%);box-shadow:0 8px 22px #b88b381b;display:grid;place-items:center"><div style="position:absolute;inset:9px;border:1px solid #e8d7ae;border-radius:50%"></div><span style="position:absolute;top:5px;left:50%;transform:translateX(-50%);font-weight:800;color:#a47a2b">ش</span><span style="position:absolute;bottom:5px;left:50%;transform:translateX(-50%);color:#8d969f">ج</span><span style="position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#8d969f">شر</span><span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#8d969f">غر</span><div id="qiblaNeedle" style="position:absolute;inset:0;transform:rotate(0deg);transition:transform .18s ease"><div style="position:absolute;top:24px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-bottom:65px solid #b88b38;filter:drop-shadow(0 2px 2px #0002)"></div><div style="position:absolute;top:89px;left:50%;transform:translateX(-50%);width:3px;height:21px;background:#c9a253"></div></div><div style="position:relative;z-index:1;width:30px;height:30px;border-radius:50%;background:#fffefa;border:2px solid #c7a253;display:grid;place-items:center;color:#8b6829;font-size:14px">✦</div></div><div id="qiblaDegree" style="font-weight:700;color:#896528;margin-bottom:8px">الاتجاه: —°</div><button class="btn gold" id="enableCompass" type="button">🧭 تشغيل بوصلة الهاتف</button><div id="compassStatus" class="subtext" style="margin-top:8px">اسمح بحركة الجهاز إذا طلب الهاتف ذلك، وامسكه بشكل مسطّح.</div><div class="subtext" style="margin-top:5px">قد تختلف الدقة حسب حساسات الهاتف والمعايرة.</div></div></div>
   <div class="panel" style="margin-top:13px">
    <div class="section-head"><div><h2>🕌 الصلاة القادمة</h2><p>تابع الصلاة القادمة وفعّل الأذان التلقائي بعد حساب مواقيت مدينتك.</p></div><span class="section-tag">الصلاة</span></div>
    <div class="field-wrap"><div class="field" id="nextPrayerNote">تظهر بعد حساب مواقيت الصلاة</div></div>
@@ -385,8 +389,53 @@ async function fetchCityPrayer(){
   localStorage.setItem('noorPrayerCity',city);localStorage.setItem('noorPrayerCountry',country);
  }catch(e){$('prayerLocation').textContent='لم نتمكن من العثور على المدينة. تأكد من كتابة المدينة والدولة ثم حاول مرة أخرى.'}
 }
+
+let qiblaBearing=null,phoneHeading=null,compassListening=false;
+function setQiblaBearing(bearing){
+ qiblaBearing=((Number(bearing)%360)+360)%360;
+ $('qiblaDegree').textContent='اتجاه القبلة من الشمال: '+arabicNum(Math.round(qiblaBearing))+'°';
+ $('qiblaText').textContent='تم حساب اتجاه القبلة. شغّل بوصلة الهاتف ليشير السهم إلى جهة القبلة.';
+ updateCompassNeedle();
+}
+function updateCompassNeedle(){
+ if(qiblaBearing===null)return;
+ const relative=phoneHeading===null?qiblaBearing:((qiblaBearing-phoneHeading+360)%360);
+ $('qiblaNeedle').style.transform='rotate('+relative+'deg)';
+ if(phoneHeading!==null){
+  $('compassStatus').textContent='البوصلة تعمل — حرّك الهاتف ببطء حتى يشير السهم إلى جهة القبلة.';
+  $('qiblaDegree').textContent='القبلة '+arabicNum(Math.round(qiblaBearing))+'° من الشمال · أمامك '+arabicNum(Math.round(relative))+'°';
+ }
+}
+function onCompassOrientation(e){
+ let heading;
+ if(typeof e.webkitCompassHeading==='number') heading=e.webkitCompassHeading;
+ else if(e.alpha!==null&&e.absolute===true) heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;
+ else if(e.alpha!==null&&phoneHeading===null) heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;
+ if(Number.isFinite(heading)){phoneHeading=((heading%360)+360)%360;updateCompassNeedle()}
+}
+async function enablePhoneCompass(){
+ if(qiblaBearing===null){$('compassStatus').textContent='أولاً اضغط «حدّد موقعي بدلاً من ذلك» حتى نحسب اتجاه القبلة.';return}
+ try{
+  if(typeof DeviceOrientationEvent==='undefined')throw Error('unsupported');
+  if(typeof DeviceOrientationEvent.requestPermission==='function'){
+   const permission=await DeviceOrientationEvent.requestPermission();
+   if(permission!=='granted')throw Error('denied');
+  }
+  if(!compassListening){
+   window.addEventListener('deviceorientationabsolute',onCompassOrientation,true);
+   window.addEventListener('deviceorientation',onCompassOrientation,true);
+   compassListening=true;
+  }
+  $('compassStatus').textContent='بانتظار حساس البوصلة… حرّك الهاتف ببطء.';
+  $('enableCompass').textContent='🧭 البوصلة قيد التشغيل';
+ }catch(e){
+  $('compassStatus').textContent=e.message==='denied'?'لم يُسمح بالوصول إلى حركة الجهاز. فعّل الإذن من إعدادات المتصفح.':'هذا المتصفح لا يوفّر بوصلة الهاتف؛ جرّب Chrome مع السماح بالحساسات.';
+ }
+}
+$('enableCompass').addEventListener('click',enablePhoneCompass);
+
 $('getCityPrayer').onclick=fetchCityPrayer;
-$('getPrayer').onclick=()=>{if(!navigator.geolocation){$('prayerLocation').textContent='المتصفح لا يدعم تحديد الموقع.';return}$('prayerLocation').textContent='جارٍ تحديد الموقع...';navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;try{const d=new Date();const url='https://api.aladhan.com/v1/timings/'+Math.floor(d.getTime()/1000)+'?latitude='+lat+'&longitude='+lon+'&method=3';const r=await fetch(url);if(!r.ok)throw Error('network');const j=await r.json();const t=j.data.timings;renderPrayerTimes(t,'موقع جهازك');const qr=await fetch('https://api.aladhan.com/v1/qibla/'+lat+'/'+lon);const qj=await qr.json();const bearing=Math.round(qj.data.direction);$('qiblaText').textContent='اتجاه القبلة التقريبي: '+arabicNum(bearing)+'° من الشمال.';}catch(e){$('prayerLocation').textContent='تعذّر تحميل المواقيت. حاول لاحقاً.'}},()=>{$('prayerLocation').textContent='لم يتم السماح بالموقع. يمكنك تفعيل إذن الموقع من إعدادات المتصفح.'},{enableHighAccuracy:false,timeout:12000})};
+$('getPrayer').onclick=()=>{if(!navigator.geolocation){$('prayerLocation').textContent='المتصفح لا يدعم تحديد الموقع.';return}$('prayerLocation').textContent='جارٍ تحديد الموقع...';navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;try{const d=new Date();const url='https://api.aladhan.com/v1/timings/'+Math.floor(d.getTime()/1000)+'?latitude='+lat+'&longitude='+lon+'&method=3';const r=await fetch(url);if(!r.ok)throw Error('network');const j=await r.json();const t=j.data.timings;renderPrayerTimes(t,'موقع جهازك');const qr=await fetch('https://api.aladhan.com/v1/qibla/'+lat+'/'+lon);const qj=await qr.json();const bearing=Number(qj.data.direction);setQiblaBearing(bearing);}catch(e){$('prayerLocation').textContent='تعذّر تحميل المواقيت. حاول لاحقاً.'}},()=>{$('prayerLocation').textContent='لم يتم السماح بالموقع. يمكنك تفعيل إذن الموقع من إعدادات المتصفح.'},{enableHighAccuracy:false,timeout:12000})};
 $('enableAdhan').onclick=()=>{adhanAutoEnabled=true;lastAdhanKey='';$('adhanStatus').textContent='تم تفعيل محاولة تشغيل الأذان التلقائي. اترك الصفحة مفتوحة وارفع صوت الجهاز.';$('prayerLocation').textContent=prayerCache?'تم تفعيل الأذان التلقائي لجدول '+prayerCache.location+'.':'تم تفعيل الصوت؛ احسب مواقيت مدينتك الآن.';const audio=$('automaticAdhanAudio');audio.src='https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_02_Dhuhr_Adhan.mp3';audio.volume=0.01;audio.play().then(()=>{audio.pause();audio.currentTime=0;audio.volume=1;$('adhanStatus').textContent='الصوت جاهز. سيحاول الموقع تشغيل الأذان عند وقت الصلاة بينما الصفحة مفتوحة.'}).catch(()=>{$('adhanStatus').textContent='فعّل الصوت من زر الأذان مرة أخرى إذا منع المتصفح التشغيل التلقائي.'})};
 const adhanFiles={Fajr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_01_Fajr_Adhan.mp3',Dhuhr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_02_Dhuhr_Adhan.mp3',Asr:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_03_Asr_Adhan.mp3',Maghrib:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_04_Maghrib_Adhan.mp3',Isha:'https://archive.org/download/adhan.recordings.from.doha.qatar/Adhan_Doha_Qatar_05_Isha_Adhan.mp3'};
 function checkAutoAdhan(){
