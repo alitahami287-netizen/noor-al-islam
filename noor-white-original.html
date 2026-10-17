@@ -439,6 +439,25 @@ setInterval(()=>{updateNextPrayer();checkAutoAdhan()},10000);
 const savedCity=localStorage.getItem('noorPrayerCity'),savedCountry=localStorage.getItem('noorPrayerCountry');
 if(savedCity)$('cityInput').value=savedCity;if(savedCountry)$('countryInput').value=savedCountry;
 if(savedCity&&savedCountry)fetchCityPrayer();
+const bookReadingLinks={
+ bukhari:'https://sunnah.com/bukhari',
+ muslim:'https://sunnah.com/muslim',
+ riyadussalihin:'https://sunnah.com/riyadussalihin',
+ nawawi40:'https://sunnah.com/nawawi40',
+ tafsir:'https://quran.com/tafsirs/ibn-kathir',
+ adhkar:'https://www.google.com/search?q='+encodeURIComponent('كتاب الأذكار للنووي قراءة online مكتبة الشاملة'),
+ bulugh:'https://sunnah.com/bulugh',
+ adab:'https://sunnah.com/adab',
+ aqida:'https://www.google.com/search?q='+encodeURIComponent('العقيدة الواسطية قراءة مكتبة الشاملة'),
+ fiqh:'https://www.google.com/search?q='+encodeURIComponent('زاد المستقنع قراءة مكتبة الشاملة')
+};
+document.querySelectorAll('.open-book').forEach(btn=>btn.addEventListener('click',()=>{
+ const url=bookReadingLinks[btn.dataset.bookId];
+ if(!url)return;
+ const opened=window.open(url,'_blank','noopener,noreferrer');
+ if(!opened)window.location.href=url;
+}));
+document.querySelectorAll('.open-book').forEach(btn=>{btn.textContent='افتح الكتاب للقراءة ↗';});
 const bookSearch=$('bookSearch');
 if(bookSearch)bookSearch.addEventListener('input',()=>{const q=bookSearch.value.trim().toLowerCase();let visible=0;document.querySelectorAll('#sunnaBookGrid [data-book]').forEach(card=>{const match=!q||card.dataset.book.toLowerCase().includes(q)||card.innerText.toLowerCase().includes(q);card.style.display=match?'':'none';if(match)visible++});$('bookSearchEmpty').style.display=visible?'none':'block'});
 function updateHijri(){try{const now=new Date();const fmt=new Intl.DateTimeFormat('ar-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'});$('hijriDate').textContent=fmt.format(now);$('hijriFull').textContent=fmt.format(now)}catch(e){$('hijriDate').textContent='هجري';$('hijriFull').textContent='التاريخ الهجري غير متاح في هذا المتصفح.'}}updateHijri();$('refreshDate').onclick=updateHijri;
