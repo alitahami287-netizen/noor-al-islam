@@ -390,7 +390,7 @@ async function fetchCityPrayer(){
  }catch(e){$('prayerLocation').textContent='لم نتمكن من العثور على المدينة. تأكد من كتابة المدينة والدولة ثم حاول مرة أخرى.'}
 }
 
-let qiblaBearing=null,phoneHeading=null,compassListening=false;
+let qiblaBearing=null,phoneHeading=null,compassListening=false,absoluteCompassSeen=false;
 function setQiblaBearing(bearing){
  qiblaBearing=((Number(bearing)%360)+360)%360;
  $('qiblaDegree').textContent='اتجاه القبلة من الشمال: '+arabicNum(Math.round(qiblaBearing))+'°';
@@ -409,8 +409,8 @@ function updateCompassNeedle(){
 function onCompassOrientation(e){
  let heading;
  if(typeof e.webkitCompassHeading==='number') heading=e.webkitCompassHeading;
- else if(e.alpha!==null&&e.absolute===true) heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;
- else if(e.alpha!==null&&phoneHeading===null) heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;
+ else if(e.alpha!==null&&e.absolute===true){absoluteCompassSeen=true;heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;}
+ else if(e.alpha!==null&&!absoluteCompassSeen) heading=(360-e.alpha+(screen.orientation&&screen.orientation.angle||0))%360;
  if(Number.isFinite(heading)){phoneHeading=((heading%360)+360)%360;updateCompassNeedle()}
 }
 function startCompassAutomatically(){
