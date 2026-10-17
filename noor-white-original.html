@@ -358,8 +358,7 @@ function showDhikr(){const d=adhkar[dhikrKind][dhikrIndex];$('dhikrCategory').te
 document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-kind]').forEach(x=>x.classList.remove('active'));b.classList.add('active');dhikrKind=b.dataset.kind;dhikrIndex=0;dhikrCount=0;showDhikr()});
 $('dhikrTap').onclick=()=>{const goal=adhkar[dhikrKind][dhikrIndex][2];if(dhikrCount<goal)dhikrCount++;showDhikr();if(dhikrCount>=goal){$('dhikrProgress').textContent='اكتمل الذكر، بارك الله فيك. ننتقل للتالي…';$('dhikrTap').disabled=true;$('dhikrNext').disabled=true;setTimeout(()=>{dhikrIndex=(dhikrIndex+1)%adhkar[dhikrKind].length;dhikrCount=0;$('dhikrTap').disabled=false;$('dhikrNext').disabled=false;showDhikr()},900)}};
 $('dhikrCounter').onclick=$('dhikrTap').onclick;$('dhikrNext').onclick=()=>{dhikrIndex=(dhikrIndex+1)%adhkar[dhikrKind].length;dhikrCount=0;showDhikr()};$('dhikrReset').onclick=()=>{dhikrCount=0;$('dhikrTap').disabled=false;$('dhikrNext').disabled=false;showDhikr()};showDhikr();
-let tasbihCount=+(localStorage.getItem('noorTasbih')||0),tasbihTotal=+(localStorage.getItem('noorTasbihTotal')||localStorage.getItem('noorTasbih')||0),tasbihAutoAdvance=false;function updateTasbih(){const goal=+$('goal').value;$('tasbihButton').textContent=arabicNum(tasbihCount);$('tasbihProgress').textContent=arabicNum(tasbihCount)+' من '+arabicNum(goal);$('goalBar').style.width=Math.min(100,tasbihCount/goal*100)+'%';$('dailyCount').textContent=arabicNum(tasbihTotal);$('tasbihLabel').textContent=$('tasbihType').value;localStorage.setItem('noorTasbih',tasbihCount);localStorage.setItem('noorTasbihTotal',tasbihTotal);$('dailySummary').textContent='أنجزت '+arabicNum(tasbihTotal)+' تسبيحات على هذا الجهاز.'}
-function tasbihAdd(){if(tasbihAutoAdvance)return;tasbihCount++;tasbihTotal++;const goal=+$('goal').value;if(tasbihCount>=goal){tasbihCount=goal;updateTasbih();tasbihAutoAdvance=true;const progress=$('tasbihProgress');progress.textContent='أحسنت! اكتمل الهدف، ننتقل للذكر التالي…';setTimeout(()=>{const sel=$('tasbihType');sel.selectedIndex=(sel.selectedIndex+1)%sel.options.length;tasbihCount=0;tasbihAutoAdvance=false;updateTasbih();},900);return;}updateTasbih()}$('tasbihButton').onclick=tasbihAdd;$('tasbihTap').onclick=tasbihAdd;$('tasbihUndo').onclick=()=>{if(tasbihAutoAdvance)return;tasbihCount=Math.max(0,tasbihCount-1);tasbihTotal=Math.max(0,tasbihTotal-1);updateTasbih()};$('tasbihReset').onclick=()=>{tasbihCount=0;tasbihTotal=0;tasbihAutoAdvance=false;localStorage.setItem('noorTasbihTotal',0);updateTasbih()};$('tasbihType').onchange=()=>{tasbihCount=0;updateTasbih()};$('goal').onchange=updateTasbih;updateTasbih();
+// تمت إعادة ربط المسبحة في سكربت مستقل لضمان عمل أزرارها.
 let prayerCache=null,adhanAutoEnabled=false,lastAdhanKey='';
 function renderPrayerTimes(t,locationLabel){
  const entries=[['الفجر',t.Fajr],['الشروق',t.Sunrise],['الظهر',t.Dhuhr],['العصر',t.Asr],['المغرب',t.Maghrib],['العشاء',t.Isha]];
@@ -469,6 +468,25 @@ $('focusSearch').onclick=()=>{$('ayahSearch').focus();$('ayahSearch').scrollInto
 let large=false;$('fontBtn').onclick=()=>{large=!large;document.body.style.fontSize=large?'18px':'';$('fontBtn').textContent=large?'A−':'Aa'};
 loadSurah();
 /* أزيل خيار اللغة الإنجليزية بناءً على طلب المستخدم */
+</script>
+
+<script>
+/* إصلاح مستقل للمسبحة الإلكترونية */
+(function(){
+ function initTasbih(){
+  const el=id=>document.getElementById(id);
+  const button=el('tasbihButton'),tap=el('tasbihTap'),undo=el('tasbihUndo'),reset=el('tasbihReset'),type=el('tasbihType'),goalEl=el('goal');
+  if(!button||!tap||!undo||!reset||!type||!goalEl)return;
+  const read=(key,fallback)=>{try{return Number(localStorage.getItem(key)??fallback)||0}catch(e){return fallback}};
+  const save=(key,value)=>{try{localStorage.setItem(key,String(value))}catch(e){}}
+  let count=read('noorTasbih',0),total=read('noorTasbihTotal',read('noorTasbih',0)),busy=false;
+  const ar=n=>String(n).replace(/\\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+  function paint(){const goal=Math.max(1,Number(goalEl.value)||100);button.textContent=ar(count);el('tasbihProgress').textContent=ar(count)+' من '+ar(goal);el('goalBar').style.width=Math.min(100,count/goal*100)+'%';el('dailyCount').textContent=ar(total);el('tasbihLabel').textContent=type.value;if(el('dailySummary'))el('dailySummary').textContent='أنجزت '+ar(total)+' تسبيحات على هذا الجهاز.';save('noorTasbih',count);save('noorTasbihTotal',total)}
+  function add(){if(busy)return;const goal=Math.max(1,Number(goalEl.value)||100);if(count<goal){count++;total++;paint()}if(count>=goal){busy=true;el('tasbihProgress').textContent='أحسنت! اكتمل الهدف، ننتقل للذكر التالي…';setTimeout(()=>{type.selectedIndex=(type.selectedIndex+1)%type.options.length;count=0;busy=false;paint()},900)}}
+  button.onclick=add;tap.onclick=add;undo.onclick=()=>{if(busy)return;count=Math.max(0,count-1);total=Math.max(0,total-1);paint()};reset.onclick=()=>{count=0;total=0;busy=false;paint()};type.onchange=()=>{count=0;busy=false;paint()};goalEl.onchange=paint;paint();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initTasbih);else initTasbih();
+})();
 </script>
 </body>
 </html>
