@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10100e">
+  <title>GPT ULTRA — مساعدك الذكي</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b0c0b;--panel:#131512;--panel2:#191b17;--gold:#d8b45a;--gold2:#f0d68c;--text:#f4f1e8;--muted:#a7a394;--line:#2b2d26;--danger:#ff9b91}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -20%,#34301b 0,transparent 38%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+    button,textarea{font:inherit}button{cursor:pointer}
+    .app{min-height:100vh;display:grid;grid-template-columns:260px 1fr;max-width:1500px;margin:auto}
+    aside{background:#10120f;border-left:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:18px}
+    .brand{display:flex;align-items:center;gap:11px;padding:6px 4px 20px;border-bottom:1px solid var(--line)}
+    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,#f0d68c,#9c7429);color:#15130d;display:grid;place-items:center;font-weight:900;font-size:21px;box-shadow:0 5px 25px #d8b45a22}
+    .brand strong{letter-spacing:1.2px;font-size:17px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+    .new-chat{background:linear-gradient(120deg,#d8b45a,#f0d68c);color:#19170f;border:0;border-radius:12px;padding:13px;font-weight:800}
+    .side-note{color:var(--muted);font-size:12px;line-height:1.8;margin-top:auto;border:1px solid var(--line);border-radius:12px;padding:12px}
+    main{display:flex;flex-direction:column;min-height:100vh;min-width:0}
+    header{height:66px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:#0b0c0bd9;backdrop-filter:blur(12px);position:sticky;top:0;z-index:2}
+    header span{color:var(--muted);font-size:13px}.status{color:#b9d7a1!important}
+    .conversation{width:min(850px,100%);margin:0 auto;padding:34px 24px 160px;flex:1}
+    .welcome{text-align:center;padding:12vh 10px 5vh}.welcome .orb{width:76px;height:76px;margin:0 auto 22px;border-radius:25px;background:linear-gradient(145deg,#f0d68c,#987027);color:#17140b;display:grid;place-items:center;font-size:35px;box-shadow:0 15px 50px #d8b45a26}
+    h1{font-size:clamp(27px,4vw,40px);margin:0 0 12px}.welcome p{color:var(--muted);line-height:1.8;margin:0 auto;max-width:520px}
+    .suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:30px auto;max-width:650px}
+    .suggestions button{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:13px;padding:14px;text-align:right;line-height:1.5}.suggestions button:hover{border-color:var(--gold)}
+    .message{display:flex;gap:12px;margin:24px 0;align-items:flex-start}.avatar{flex:0 0 34px;height:34px;border-radius:11px;background:var(--panel2);display:grid;place-items:center;color:var(--gold);font-weight:800}
+    .message.user .avatar{background:#29251a;color:var(--gold2)}.bubble{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;padding:3px 0;max-width:100%}.message.user .bubble{background:#1b1d18;border:1px solid var(--line);padding:12px 15px;border-radius:14px}
+    .composer-wrap{position:fixed;bottom:0;right:260px;left:0;padding:22px 24px 16px;background:linear-gradient(transparent,var(--bg) 22%)}
+    .composer{width:min(850px,100%);margin:auto;background:var(--panel);border:1px solid #51452a;border-radius:18px;padding:12px;box-shadow:0 15px 55px #0008;display:flex;gap:10px;align-items:flex-end}
+    textarea{resize:none;flex:1;min-height:48px;max-height:180px;background:transparent;border:0;outline:0;color:var(--text);padding:11px 9px;line-height:1.6}
+    .send{width:46px;height:46px;border:0;border-radius:13px;background:var(--gold);color:#17140b;font-size:20px;font-weight:900}.send:disabled{opacity:.45;cursor:not-allowed}
+    .hint{text-align:center;color:#777568;font-size:11px;margin:9px auto 0;width:min(850px,100%)}
+    .error{color:var(--danger);font-size:13px;margin:12px 0}
+    @media(max-width:760px){.app{grid-template-columns:1fr}aside{display:none}header{padding:0 16px}.conversation{padding:22px 16px 150px}.composer-wrap{right:0;padding:15px 12px 12px}.welcome{padding-top:9vh}.suggestions{grid-template-columns:1fr}.side-note{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="logo">U</div><div><strong>GPT ULTRA</strong><small>مساعدك الذكي</small></div></div>
+    <button class="new-chat" id="newChat">＋ محادثة جديدة</button>
+    <div class="side-note">نسخة تجريبية أولى<br>واجهة عربية متجاوبة، مع حفظ المحادثة على هذا الجهاز فقط.</div>
+  </aside>
+  <main>
+    <header><strong>GPT ULTRA</strong><span class="status">● جاهز للمحادثة</span></header>
+    <section class="conversation" id="conversation" aria-live="polite">
+      <div class="welcome" id="welcome">
+        <div class="orb">✦</div>
+        <h1>أهلاً بك في GPT ULTRA</h1>
+        <p>اسأل، تعلّم، اكتب، أو اطلب المساعدة في أفكارك. ابدأ بسؤالك الأول.</p>
+        <div class="suggestions">
+          <button>اشرح لي موضوعاً صعباً بطريقة سهلة</button>
+          <button>ساعدني أرتّب أفكاري لمشروع جديد</button>
+          <button>اكتب لي خطة تعلّم خطوة بخطوة</button>
+          <button>لخّص لي نصاً وأبرز أهم نقاطه</button>
+        </div>
+      </div>
+    </section>
+    <div class="composer-wrap">
+      <form class="composer" id="chatForm">
+        <textarea id="prompt" rows="1" placeholder="اكتب رسالتك هنا..." aria-label="رسالتك" required></textarea>
+        <button class="send" id="send" aria-label="إرسال">➤</button>
+      </form>
+      <div class="hint">قد يخطئ الذكاء الاصطناعي؛ تحقّق من المعلومات المهمة.</div>
+      <div id="error" class="error" role="alert" style="width:min(850px,100%);margin:7px auto 0"></div>
+    </div>
+  </main>
+</div>
+<script>
+(() => {
+  const form=document.getElementById('chatForm'), input=document.getElementById('prompt');
+  const conversation=document.getElementById('conversation'), welcome=document.getElementById('welcome');
+  const send=document.getElementById('send'), error=document.getElementById('error');
+  let messages=[];
+  const addMessage=(role,text)=>{
+    if(welcome) welcome.remove();
+    const row=document.createElement('div'); row.className='message '+(role==='user'?'user':'assistant');
+    const avatar=document.createElement('div'); avatar.className='avatar'; avatar.textContent=role==='user'?'أنت':'U';
+    const bubble=document.createElement('div'); bubble.className='bubble'; bubble.textContent=text;
+    row.append(avatar,bubble); conversation.append(row); window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); return bubble;
+  };
+  const autosize=()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,180)+'px'};
+  input.addEventListener('input',autosize);
+  document.querySelectorAll('.suggestions button').forEach(b=>b.addEventListener('click',()=>{input.value=b.textContent;input.focus();autosize()}));
+  document.getElementById('newChat').addEventListener('click',()=>{messages=[];conversation.innerHTML='';conversation.append(welcome);welcome.style.display='block';error.textContent='';input.focus()});
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); const text=input.value.trim(); if(!text||send.disabled)return;
+    error.textContent=''; messages.push({role:'user',content:text}); addMessage('user',text);
+    input.value='';autosize();send.disabled=true;
+    const pending=addMessage('assistant','يفكر الآن…');
+    try{
+      const response=await fetch('/.netlify/functions/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages})});
+      const data=await response.json();
+      if(!response.ok) throw new Error(data.error||'تعذّر الاتصال بالخدمة.');
+      const answer=String(data.reply||'لم يصل رد.'); pending.textContent=answer;
+      messages.push({role:'assistant',content:answer});
+    }catch(err){pending.textContent='';pending.parentElement.remove();messages.pop();error.textContent=err.message||'حدث خطأ غير متوقع. حاول مرة أخرى.';}
+    finally{send.disabled=false;input.focus();}
+  });
+})();
+</script>
+</body>
+</html>
